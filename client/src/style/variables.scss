@@ -1,0 +1,46 @@
+$color_black: #000000;
+$color_white: #ffffff;
+
+$color_blue: rgb(247, 247, 247);
+$color_blue1: rgb(50, 96, 212);
+$color_blue2:rgb(131, 166, 255);
+
+$color_black1: rgb(50, 50, 50);
+
+$color_grey: rgb(140, 140, 140);
+$color_grey1: rgb(229, 229, 229);
+$color_grey2: rgb(140, 140, 140);
+
+$boxshadow1: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
+
+@mixin main-title() {
+    font-size: 62px;
+    font-weight: 400;
+    line-height: 76px;
+    letter-spacing: 0%;
+    @media screen and (max-width: 1200px) {
+        font-size: 46px;
+
+        line-height: 54px;
+    }
+    @media screen and (max-width: 700px) {
+        font-size: 36px;
+        line-height: 44px;
+    }
+}
+
+@mixin main-parag() {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    @media screen and (max-width: 1200px) {
+        font-size: 16px;
+        line-height: 19px;
+    }
+    @media screen and (max-width: 700px) {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 17px;
+    }
+}

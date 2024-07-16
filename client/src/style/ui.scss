@@ -1,0 +1,200 @@
+.ui-button {
+    gap: 30px;
+    padding-right: 70px;
+    color: $color_blue1;
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    &-text {
+        z-index: 2;
+        text-wrap: nowrap;
+    }
+    &-icon {
+        z-index: 2;
+        width: 78px;
+        height: 78px;
+    }
+    &-circle {
+        position: absolute;
+        width: 78px;
+        height: 78px;
+        border-radius: 80px;
+        background: $color_blue1;
+        -webkit-transition: width 0.3s ease-in-out;
+        -moz-transition: width 0.3s ease-in-out;
+        -o-transition: width 0.3s ease-in-out;
+        transition: width 0.3s ease-in-out;
+    }
+
+    &:hover {
+        .ui-button-text {
+            color: $color_white;
+        }
+        .ui-button-circle {
+            width: 100%;
+        }
+    }
+    
+    @media screen and (max-width: 1000px) {
+        padding-right: 50px;
+        font-size: 16px;
+        &-icon {
+            width: 50px;
+            height: 50px;
+        }
+        &-circle{
+            width: 50px;
+            height: 50px;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        padding-right: 50px;
+        font-size: 16px;
+        background-color: $color_blue1;
+        color: $color_white;
+        width: 100%;
+        height: 56px;
+        padding: 0;
+        justify-content: center;
+        gap: 10px;
+        border-radius: 51.58px;
+        &-icon {
+            width: 25px;
+            height: 25px;
+        }
+        &-circle{
+            display: none;
+        }
+    }
+}
+
+.label-before,
+.field input:focus + label::before,
+.field input:valid + label::before {
+    line-height: 15px;
+    font-size: 12px;
+    top: -4px;
+    background: #fff;
+    padding: 0 6px;
+    left: -5px;
+}
+
+.field {
+    position: relative;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    display: inline-block;
+    width: 100%;
+}
+.field label::before {
+    content: attr(title);
+    position: absolute;
+    top: 15px;
+    left: 0px;
+    line-height: 30px;
+    @include main-parag;
+    color: $color_grey;
+    transition: 300ms all;
+}
+.field input {
+    @include main-parag;
+    color: $color_black1 !important;
+    width: 100%;
+    height: 50px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(229, 229, 229);
+}
+.field input:focus {
+    outline: 0;
+    border-color: $color_blue1;
+}
+.field input:valid + label::before {
+    content: attr(data-title);
+}
+
+.field input:focus + label::before {
+    color: $color_grey;
+}
+
+.field-red-border{
+    border-bottom: 1px solid red !important;
+}  
+
+
+.label-before,
+.ui-textarea textarea:focus + label::before,
+.ui-textarea textarea:valid + label::before {
+    line-height: 15px;
+    font-size: 12px;
+    top: -4px;
+    background: #fff;
+    padding: 0 6px;
+    left: -5px;
+}
+
+.ui-textarea {
+    font-family: "Montserrat" !important;
+    width: 100%;
+    position: relative;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    display: inline-block;
+
+}
+
+.ui-textarea label::before {
+    content: attr(title);
+    @include main-parag;
+    position: absolute;
+    top: 15px;
+    left: 0px;
+    line-height: 30px;
+    color:  $color_grey; /* Assuming $color_grey is grey */
+    transition: 300ms all;
+}
+
+.ui-textarea textarea {
+    @include main-parag;
+    color: $color_black1 !important;/* Assuming $color_black1 is black */
+    width: 100%;
+    height: 50px; /* Adjust the height as needed */
+    padding-bottom: 10px;
+    padding-top: 20px;
+    box-sizing: border-box;
+    border: 0;
+     border-bottom: 1px solid rgb(229, 229, 229);
+}
+
+.ui-textarea textarea:focus {
+    outline: 0;
+    border-color: $color_blue1; /* Assuming $color_blue1 is blue */
+}
+
+.ui-textarea textarea:valid + label::before {
+    content: attr(data-title);
+}
+
+.ui-textarea textarea:focus + label::before {
+    color: $color_grey;
+}
+
+.loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color_blue1;
+    
+}   

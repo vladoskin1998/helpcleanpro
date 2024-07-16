@@ -1,0 +1,120 @@
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+  
+}
+/* Обнуляющие стили для ссылок */
+a:link,
+a:visited {
+  color: inherit; /* Наследование цвета текста */
+  text-decoration: none; /* Удаление подчеркивания */
+}
+textarea:focus {
+  outline: none;
+  text-decoration: none; 
+}
+textarea {
+  resize: none;
+  text-decoration: none; 
+}
+a:hover,
+a:focus,
+a:active {
+  cursor: pointer;
+  text-decoration: none; /* Подчеркивание при наведении, фокусе и активном состоянии */
+}
+/* Обнуляющие стили для списков */
+ul,
+ol {
+    list-style: none;
+}
+
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+input {
+  all: unset; 
+  text-align: start;
+}
+
+
+*{
+  box-sizing: border-box;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+button:focus, 
+input:focus, 
+select:focus, 
+textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, 
+a, 
+input, 
+select, 
+textarea {
+  outline: none;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+textarea::-webkit-scrollbar {
+  height: 0;
+}
+
+
+textarea::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+textarea {
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
