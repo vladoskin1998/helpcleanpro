@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CommentsModule } from './comments/comments.module';
 import { NotificationModule } from './notification/notification.module';
 import * as path from 'path';
+import { MailModule } from './mailer/mail.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import * as path from 'path';
     }),
     CommentsModule,
     NotificationModule,
+    MailModule
   ],
 
 })

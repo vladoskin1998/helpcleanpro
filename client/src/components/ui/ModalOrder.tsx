@@ -51,11 +51,13 @@ export const ModalOrder = ({
             setShowAlert(true)
 
         } catch (error) {
-            alert('Warning: error with order')
+          
+            alert('Warning: error with order, ')
+         
         }
     }
-    const handlerPushNotification = () => {
-        sendMessage()
+    const handlerPushNotification = async () => {
+        await sendMessage()
     
         setTimeout(() => {
             setShowAlert(false)

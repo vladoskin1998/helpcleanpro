@@ -27,22 +27,22 @@ const Contats = () => {
             <p className="contacts-title">Ние сме на линия 24/7</p>
             <p className="contacts-phone">+359 896 832 216</p>
             <div className="contacts-net">
-                <a href="https://www.instagram.com/helpcleanpro?igsh=ampxNmU4OWlhOHBh">
+                <a href="https://www.instagram.com/helpcleanpro/profilecard/?igsh=MXJlMzh6eW14MjN6aA==" target="_blank">
                     <IconsIns />
                 </a>
-                <a href="https://www.tiktok.com/@helpcleanpro2?_t=8nZmpuUF4SW&_r=1">
+                <a href="https://www.tiktok.com/@helpcleanpro2?_t=8rJLyUZuic2&_r=1" target="_blank">
                     <IconsTiktok />
                 </a>
-                <a href="https://www.facebook.com/profile.php?id=61550650637904">
+                <a href="https://www.facebook.com/profile.php?id=61550650637904" target="_blank">
                     <IconsFb />
                 </a>
-                <a href="https://t.me/myronov_clean">
+                <a href="https://t.me/myronov_clean" target="_blank">
                     <IconsTelegram />
                 </a>
-                <a href="http://">
+                <a href="https://wa.me/359896832216" target="_blank">
                     <IconsWa />
                 </a>
-                <a href="http://">
+                <a href="viber://chat?number=+359896832216" target="_blank">
                     <IconsViber />
                 </a>
             </div>

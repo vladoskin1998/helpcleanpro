@@ -5,7 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Notification, NotificationDocument } from './notification.schema';
 import { ConfigService } from '@nestjs/config';
-import { config } from 'dotenv';
+import { MailService } from 'src/mailer/mail.service';
 
 @Injectable()
 export class NotificationService {
@@ -13,10 +13,10 @@ export class NotificationService {
 
   constructor(
     @InjectModel(Notification.name) private notificationModel: Model<NotificationDocument>,
-    private readonly confService: ConfigService
+    private readonly confService: ConfigService,
+    private readonly mailService: MailService
   ) {
-    // config();
-    
+
     const token = this.confService.get('TOKEN');
     
     this.bot = new TelegramBot(token, { polling: true });
@@ -28,6 +28,8 @@ export class NotificationService {
   }
 
   async registerUser(chatId: string): Promise<NotificationDocument> {
+    console.log("registerUser",chatId);
+    
     const existingUser = await this.notificationModel.findOne({ chatId });
     if (!existingUser) {
       const newUser = new this.notificationModel({ chatId });
@@ -41,17 +43,28 @@ export class NotificationService {
   }
 
   async sendMessageToAll(dto: NotificationDto): Promise<void> {
-    const message = `Город - ${dto.city}\nИмя - ${dto.name}\nМобильный телефон - ${dto.phone}\nКомментарий - ${dto.comment || "нету"} `;
+    const message = `Город - ${dto.city}\nИмя - ${dto.name}\nМобильный телефон - ${dto.phone}\nКомментарий - ${dto.comment || "нету"}`;
     const users = await this.notificationModel.find().lean().exec() as Notification[];
+    await this.mailService.sendMail(
+      {
+        to:"helpcleanprobg@gmail.com",
+        subject: "Ордер на клининг",
+        text:message,
+    }
+    )
     for (const user of users) {
       if (user.chatId) {
         try {
+       
           await this.sendMessage(user.chatId, message);
-        } catch (error) {
-          console.log(error);
-          
+        } catch (error: any) {
+          if (error.response?.body?.error_code === 403) {
+            console.log(`Пользователь с chatId ${user.chatId} заблокировал бота. Сообщение не отправлено.`);
+          } else {
+              throw error
+              
+          }
         }
-      
       }
     }
   }

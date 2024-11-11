@@ -101,7 +101,7 @@ const Comments = () => {
                                 <IconsStar />
                             </div>
                             <p>
-                                {Math.ceil(list?.reduce((p, s) => ((Number(s?.rating) || 0) + p ),0)/list?.length)}
+                                {Math.ceil(list?.reduce((p, s) => ((Number(s?.rating) || 0) + p ),0)/list?.length) || ""}
                             </p>
                         </div>
                     </div>
@@ -110,13 +110,14 @@ const Comments = () => {
                         Отзиви за <br /> нашите услуги
                     </h5>
                 </div>
-                <div className="comments-list">
+                {
+                    !!list.length &&   <div className="comments-list">
                     {list.slice(0, length).map((item) => (
                         <div className="comments-list-item" key={item._id}>
                             <div className="comments-list-item-head">
                                 <div className="comments-stars">
                                     <IconsStar />
-                                    <p>{item.rating}</p>
+                                    <p>{item.rating }</p>
                                 </div>
                                 |<b>{item.name}</b>|
                                 <span>{formatDate(item.dateCreating)}</span>
@@ -127,6 +128,8 @@ const Comments = () => {
                         </div>
                     ))}
                 </div>
+                }
+              
                 <div className="comments-list-all">
                     {length >= list.length ? (
                         <></>
