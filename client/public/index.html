@@ -1,40 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
-    <link rel="icon" href="./Images/Favicon2.png" />
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+        />
+        <link rel="icon" href="./Images/Favicon2.png" />
 
-   
-    <title>Help Clean Pro</title>
+        <title>Help Clean Pro</title>
 
-    <meta name="description" content="Профессиональные клининговые услуги в Болгарии от Help Clean Pro. HelpCleanPro предлага професионално почистване на апартаменти, къщи и офиси. Клийнинг е процес на поддържане на чистота в различни помещения, включително жилищни домове, офиси, търговски сгради, хотели и медицински заведения. Пловдив">
-    <meta name="keywords" content="почистване, професионални почистващи услуги, почистване на апартаменти, почистване на къщи, почистване на офиси, клийнинг, България">
-    <meta name="author" content="HelpCleanPro">
-    <link rel="canonical" href="https://helpcleanpro.bg">
-  
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="HelpCleanPro - Професионални почистващи услуги в България">
-    <meta property="og:description" content="HelpCleanPro предлага професионално почистване на апартаменти, къщи и офиси. Клийнинг е процес на поддържане на чистота в различни помещения, включително жилищни домове, офиси, търговски сгради, хотели и медицински заведения. Пловдив">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://helpcleanpro.bg">
-    <meta property="og:image" content="https://helpcleanpro.bg/images/cleaning-service.jpg">
-  
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="HelpCleanPro - Професионални почистващи услуги в България">
-    <meta name="twitter:description" content="HelpCleanPro предлага професионално почистване на апартаменти, къщи и офиси. Клийнинг е процес на поддържане на чистота в различни помещения, включително жилищни домове, офиси, търговски сгради, хотели и медицински заведения. Пловдив">
-    <meta name="twitter:image" content="https://helpcleanpro.bg/images/cleaning-service.jpg">
-    
-    
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+        <meta
+            name="description"
+            content="Профессиональные клининговые услуги в Болгарии от Help Clean Pro. HelpCleanPro предлага професионално почистване на апартаменти, къщи и офиси. Клийнинг е процес на поддържане на чистота в различни помещения, включително жилищни домове, офиси, търговски сгради, хотели и медицински заведения. Пловдив"
+        />
+        <meta
+            name="keywords"
+            content="почистване, професионални почистващи услуги, почистване на апартаменти, почистване на къщи, почистване на офиси, клийнинг, България"
+        />
+        <meta name="author" content="HelpCleanPro" />
+        <link rel="canonical" href="https://helpcleanpro.bg" />
+
+        <!-- Open Graph Meta Tags -->
+        <meta
+            property="og:title"
+            content="HelpCleanPro - Професионални почистващи услуги в България"
+        />
+        <meta
+            property="og:description"
+            content="HelpCleanPro предлага професионално почистване на апартаменти, къщи и офиси. Клийнинг е процес на поддържане на чистота в различни помещения, включително жилищни домове, офиси, търговски сгради, хотели и медицински заведения. Пловдив"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://helpcleanpro.bg" />
+        <meta
+            property="og:image"
+            content="https://helpcleanpro.bg/images/cleaning-service.jpg"
+        />
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="HelpCleanPro - Професионални почистващи услуги в България"
+        />
+        <meta
+            name="twitter:description"
+            content="HelpCleanPro предлага професионално почистване на апартаменти, къщи и офиси. Клийнинг е процес на поддържане на чистота в различни помещения, включително жилищни домове, офиси, търговски сгради, хотели и медицински заведения. Пловдив"
+        />
+        <meta
+            name="twitter:image"
+            content="https://helpcleanpro.bg/images/cleaning-service.jpg"
+        />
+
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=AW-16762469808"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || []
+            function gtag() {
+                dataLayer.push(arguments)
+            }
+            gtag("js", new Date())
+
+            gtag("config", "AW-16762469808")
+        </script>
+        <script>
+            !(function (f, b, e, v, n, t, s) {
+                if (f.fbq) return
+                n = f.fbq = function () {
+                    n.callMethod
+                        ? n.callMethod.apply(n, arguments)
+                        : n.queue.push(arguments)
+                }
+                if (!f._fbq) f._fbq = n
+                n.push = n
+                n.loaded = !0
+                n.version = "2.0"
+                n.queue = []
+                t = b.createElement(e)
+                t.async = !0
+                t.src = v
+                s = b.getElementsByTagName(e)[0]
+                s.parentNode.insertBefore(t, s)
+            })(
+                window,
+                document,
+                "script",
+                "https://connect.facebook.net/en_US/fbevents.js"
+            )
+            fbq("init", "3956430991305717")
+            fbq("track", "PageView")
+        </script>
+        <noscript>
+            <img
+                height="1"
+                width="1"
+                src="https://www.facebook.com/tr?id=3956430991305717&ev=PageView&noscript=1"
+            />
+        </noscript>
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+        <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -43,6 +115,5 @@
 
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+    --></body>
 </html>
