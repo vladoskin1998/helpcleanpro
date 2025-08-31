@@ -45,7 +45,7 @@ const Header = () => {
                 <div className="header-nav">
                     <div className="header-phone">
                         <span>
-                            <a href="tel:+359896832216">+359 896 832 216</a>
+                            <a href="tel:+359896832216">+359 896 832 216 | +359 896 608 802</a>
                         </span>
                         <span>|</span>
                         <span>24/7</span>

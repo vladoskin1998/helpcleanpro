@@ -80,6 +80,21 @@ const Comments = () => {
         }
     }
 
+
+    const filteringList = list
+        .filter(item => {
+            const ratingOk = Number(item.rating) >= 4;
+            const dateOk = (() => {
+                if (!item.dateCreating) return false;
+                const commentDate = new Date(item.dateCreating);
+                const now = new Date();
+                const diffMs = now.getTime() - commentDate.getTime();
+                const diffHours = diffMs / (1000 * 60 * 60);
+                return diffHours > 12;
+            })();
+            return ratingOk && dateOk;
+        })
+        .slice(0, length)
     useEffect(() => {
         getComments()
     }, [])
@@ -101,7 +116,7 @@ const Comments = () => {
                                 <IconsStar />
                             </div>
                             <p>
-                                {Math.ceil(list?.reduce((p, s) => ((Number(s?.rating) || 0) + p ),0)/list?.length) || ""}
+                                {Math.ceil(filteringList?.reduce((p, s) => ((Number(s?.rating) || 0) + p), 0) / filteringList?.length).toFixed(2) || ""}
                             </p>
                         </div>
                     </div>
@@ -111,25 +126,26 @@ const Comments = () => {
                     </h5>
                 </div>
                 {
-                    !!list.length &&   <div className="comments-list">
-                    {list.slice(0, length).map((item) => (
-                        <div className="comments-list-item" key={item._id}>
-                            <div className="comments-list-item-head">
-                                <div className="comments-stars">
-                                    <IconsStar />
-                                    <p>{item.rating }</p>
+                    !!list.length && <div className="comments-list">
+                        {
+                            filteringList.map((item) => (
+                                <div className="comments-list-item" key={item._id}>
+                                    <div className="comments-list-item-head">
+                                        <div className="comments-stars">
+                                            <IconsStar />
+                                            <p>{item.rating}</p>
+                                        </div>
+                                        |<b>{item.name}</b>|
+                                        <span>{formatDate(item.dateCreating)}</span>
+                                    </div>
+                                    <div className="comments-list-item-text">
+                                        {item.comment}
+                                    </div>
                                 </div>
-                                |<b>{item.name}</b>|
-                                <span>{formatDate(item.dateCreating)}</span>
-                            </div>
-                            <div className="comments-list-item-text">
-                                {item.comment}
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                            ))}
+                    </div>
                 }
-              
+
                 <div className="comments-list-all">
                     {length >= list.length ? (
                         <></>
@@ -192,12 +208,11 @@ const Comments = () => {
                                         onMouseEnter={() =>
                                             handleMouseEnter(item)
                                         }
-                                        className={`${
-                                            item <= enterRating ||
-                                            item <= rating
+                                        className={`${item <= enterRating ||
+                                                item <= rating
                                                 ? "comments-form-stars-active"
                                                 : ""
-                                        }`}
+                                            }`}
                                     >
                                         <IconsStar />
                                     </button>

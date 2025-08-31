@@ -98,8 +98,8 @@ const PriceBeginning = () => {
                             <p className="pr-beg-plan-list-undertitle pr-beg-plan-list-undertitle-1">
                                 Пакет 3 звезди
                             </p>
-                            <h5 className="pr-beg-plan-list-title pr-beg-plan-list-title-1">
-                                от 5 лв/м.кв.
+                            <h5 className="pr-beg-mob pr-beg-plan-list-title pr-beg-plan-list-title-1">
+                                от 5.5 лв/м.кв. <br/> 2.75 €/м.кв.
                             </h5>
                             <ul className="pr-beg-plan-list-ul">
                                 {PACKAGE_3_STRAST.map((item, index) => (
@@ -133,8 +133,8 @@ const PriceBeginning = () => {
                                 <p className="pr-beg-plan-list-undertitle ">
                                     Пакет 4 звезди
                                 </p>
-                                <h5 className="pr-beg-plan-list-title ">
-                                    от 6.5 лв/м.кв.
+                                <h5 className="pr-beg-mob pr-beg-plan-list-title ">
+                                    от 6.5 лв/м.кв. <br/> 3.25 €/м.кв.
                                 </h5>
                                 <ul className="pr-beg-plan-list-ul">
                                     {PACKAGE_4_STRAST.map((item, index) => (
@@ -155,7 +155,7 @@ const PriceBeginning = () => {
                             </div>
                             <div className="pr-beg-plan-list-item pr-beg-plan-list-item-1 pr-beg-plan-list-item-2 pr-beg-plan-list-item-last">
                                 <p>Почистване след ремонт</p>
-                                <h5>от 8 лв/м.кв.</h5>
+                                <h5 className="pr-beg-mob">от 8.0 лв/м.кв. <br/> 4.0 €/м.кв.</h5>
                             </div>
                         </div>
 
@@ -168,11 +168,11 @@ const PriceBeginning = () => {
                                     <IconsStar />
                                     <IconsStar />
                                 </div>
-                                <p className="pr-beg-plan-list-undertitle pr-beg-plan-list-undertitle-1">
+                                <p className=" pr-beg-plan-list-undertitle pr-beg-plan-list-undertitle-1">
                                     Пакет 5 звезди
                                 </p>
-                                <h5 className="pr-beg-plan-list-title pr-beg-plan-list-title-1">
-                                    от 7.5 лв/м.кв.
+                                <h5 className="pr-beg-mob pr-beg-plan-list-title pr-beg-plan-list-title-1">
+                                    от 7.5 лв/м.кв. <br/> 3.75 €/м.кв.
                                 </h5>
                                 <ul className="pr-beg-plan-list-ul">
                                     {PACKAGE_5_STRAST.map((item, index) => (

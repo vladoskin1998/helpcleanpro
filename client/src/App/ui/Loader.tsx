@@ -7,3 +7,10 @@ export const Loader = () => {
         </div>
     )
 }
+
+
+export const CircleLoader = () => {
+    return <div className="loader-spin-wrapper">
+        <span className="loader-spin"></span>
+    </div>
+}    

@@ -25,7 +25,7 @@ const Contats = () => {
                 </ScrollLink>
             </div>
             <p className="contacts-title">Ние сме на линия 24/7</p>
-            <p className="contacts-phone">+359 896 832 216</p>
+            <p className="contacts-phone">+359 896 832 216 <div>+359 896 608 802</div> </p>
             <div className="contacts-net">
                 <a href="https://www.instagram.com/helpcleanpro/profilecard/?igsh=MXJlMzh6eW14MjN6aA==" target="_blank">
                     <IconsIns />
@@ -48,7 +48,7 @@ const Contats = () => {
             </div>
             <div className=" comments-list-all contacts-button">
                 <a href="tel:+359896832216">
-                    {" "}
+                 
                     <Button
                         icon={<IconsCall />}
                         text="свържете се с нас"

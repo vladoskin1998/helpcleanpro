@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { TextArea } from "./TextArea"
 import { Button } from "./Button"
 import { NOTIFICATIONHTTP } from "../../api"
+import { CircleLoader } from "./Loader"
 
 const validationInit = {
     name: true,
@@ -19,6 +20,8 @@ export const ModalOrder = ({
     open: boolean
     close: () => void
 }) => {
+
+    const [loading,setLoading] = useState<boolean>(false)
     const [city, setCity] = useState("Пловдив")
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
@@ -82,13 +85,25 @@ export const ModalOrder = ({
         }
     }
     const handlerPushNotification = async () => {
-        await sendMessage()
-
+        try {
+            setLoading(true)
+             await sendMessage()
         setTimeout(() => {
             setShowAlert(false)
             close()
         }, 2000)
+        } catch (error) {
+              setLoading(false)
+            alert("Warning: error with order, Admin - 0896608802")
+        }
+        finally{
+            setLoading(false)
+        }
+       
+
     }
+
+
 
     useEffect(() => {
         setCity("Пловдив")
@@ -96,6 +111,8 @@ export const ModalOrder = ({
         setPhone("")
         setComment("")
     }, [open])
+
+    if(loading) return <CircleLoader />
     return (
         <>
             {open && (
@@ -164,6 +181,7 @@ export const ModalOrder = ({
                                 </p>
                                 <div className="comments-list-all modal-order-button">
                                     <Button
+                                        disabled={loading}
                                         icon={<IconsChevronLeft />}
                                         text="Поръчай почистване"
                                         onClick={handlerPushNotification}

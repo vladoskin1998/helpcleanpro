@@ -4,10 +4,12 @@ export const Button = ({
     icon,
     text,
     onClick,
+    disabled=false
 }: {
     icon: ReactElement
     text: string
     onClick: () => void
+    disabled?: boolean
 }) => {
     return (
         <button className="ui-button" onClick={onClick}>
