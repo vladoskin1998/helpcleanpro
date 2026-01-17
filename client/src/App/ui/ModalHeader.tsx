@@ -4,6 +4,7 @@ import { Button } from "./Button"
 
 import { useEffect } from "react"
 import { Link} from 'react-router'
+import { LanguageSelect } from "./Language-select"
 export const ModalHeader = ({
     open,
     close,
@@ -32,7 +33,7 @@ export const ModalHeader = ({
                 </button>
                 <div className="modal-head-mob  modal-head-header">
                     <img src={ "/Images/aboutlogo.svg"} alt="help clean pro" />
-                    <p>24/7</p>
+                   <div className="burger-select-language"><LanguageSelect/></div>  
                 </div>
                 <ul className="modal-head-body">
                     <li>

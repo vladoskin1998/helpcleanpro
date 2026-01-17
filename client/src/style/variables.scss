@@ -13,6 +13,20 @@ $color_grey2: rgb(140, 140, 140);
 
 $boxshadow1: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
 
+
+[data-theme="dark"] {
+  --color-black: #ffffff;
+  --color-white: #000000;
+  --color-blue: #222a36;
+  --color-blue1: #020A1D;
+  --color-blue2: #2a3a4c;
+  --color-black1: #e0e0e0;
+  --color-grey: #888888;
+  --color-grey1: #333333;
+  --color-grey2: #888888;
+  --boxshadow1: 0px 4px 15px 0px rgba(0, 0, 0, 0.4);
+}
+
 @mixin main-title() {
     font-size: 62px;
     font-weight: 400;

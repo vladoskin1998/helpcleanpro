@@ -3,6 +3,8 @@ import { ModalHeader } from "./ui/ModalHeader"
 
 import { Logo } from "./ui/Icons"
 import { Link as ScrollLink, Element } from "react-scroll"
+import { LanguageSelect } from "./ui/Language-select"
+import { SwitchTheme } from "./ui/Switch-theme"
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
 
@@ -48,7 +50,12 @@ const Header = () => {
                             <a href="tel:+359896832216">+359 896 832 216 | +359 896 608 802</a>
                         </span>
                         <span>|</span>
-                        <span>24/7</span>
+                        <span>
+                            <LanguageSelect/>
+                        </span>
+                        | <span>
+                            <SwitchTheme/>
+                        </span>
                     </div>
                     <button
                         className="header-burger"

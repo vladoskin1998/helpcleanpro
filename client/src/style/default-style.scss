@@ -6,6 +6,14 @@
     padding: 0;
   
 }
+
+select,
+::picker(select) {
+  appearance: base-select;
+}
+* {
+  box-sizing: border-box;
+}
 /* Обнуляющие стили для ссылок */
 a:link,
 a:visited {

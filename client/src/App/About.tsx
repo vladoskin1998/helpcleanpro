@@ -1,10 +1,7 @@
-import { useState } from "react"
 
 
 const About = () => {
-    const [isOpenOne, setIsOpenOne] = useState(false)
-    const [isOpenTwo, setIsOpenTwo] = useState(false)
-    const [isOpenThree, setIsOpenThree] = useState(false)
+
     return (
         <>
             <div className="container">
@@ -20,11 +17,11 @@ const About = () => {
                             </p>Отзиви
                             <p>Основните цели на почистването включват:</p>
                         </div>
-                        <div>
-                            <img src= "/Images/about.webp" alt="help clean pro" />
+                        <div className="girls-hcpro-img">
+                            <img src= "/Images/girls-hcpro.jpg" alt="help clean pro" />
                         </div>
                     </div>
-                    <div className="about-list">
+                    {/* <div className="about-list">
                         <div className="about-list-item">
                             <p className="about-list-item-num">01</p>
                             <h6 className="about-list-item-title">
@@ -103,7 +100,7 @@ const About = () => {
                                 alt="help clean pro"
                             />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <img

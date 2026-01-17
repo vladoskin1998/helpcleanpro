@@ -12,7 +12,7 @@ export const Button = ({
     disabled?: boolean
 }) => {
     return (
-        <button className="ui-button" onClick={onClick}>
+        <button className="ui-button" onClick={onClick} disabled={disabled}>
             <div className="ui-button-circle"/>
             <div className="flex-all-center ui-button-icon">{icon}</div>
             <div className="ui-button-text">{text}</div>

@@ -1,32 +1,29 @@
 import React from "react"
 
-export const Input = ({
-    placeholder,
-    value,
-    setValue,
-    validation=true,
-}: {
-    placeholder: string
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     value: string
     setValue: (s: string) => void
-    validation?:boolean
+    validation?: boolean
+}
+
+export const Input: React.FC<InputProps> = ({
+    value,
+    setValue,
+    validation = true,
+    ...rest
 }) => {
     return (
         <div className="field">
             <input
-                type="text"
-                required
-                autoComplete="off"
-                name={placeholder}
-                id={placeholder}
+                {...rest}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 className={`${!validation && "field-red-border"}`}
             />
             <label
-                htmlFor={placeholder}
-                title={placeholder}
-                data-title={placeholder}
+                htmlFor={rest.id || rest.name}
+                title={rest.placeholder}
+                data-title={rest.placeholder}
             ></label>
         </div>
     )

@@ -1,6 +1,8 @@
 import { Link as ScrollLink, Element } from "react-scroll"
 import { IconsCheck, IconsChevronLeft, IconsClose } from "./Icons"
 import { Input } from "./Input"
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { useEffect, useState } from "react"
 import { TextArea } from "./TextArea"
 import { Button } from "./Button"
@@ -22,13 +24,23 @@ export const ModalOrder = ({
 }) => {
 
     const [loading,setLoading] = useState<boolean>(false)
-    const [city, setCity] = useState("Пловдив")
-    const [name, setName] = useState("")
-    const [phone, setPhone] = useState("")
     const [comment, setComment] = useState("")
     const [showAlert, setShowAlert] = useState(false)
 
-    const [validation, setValidation] = useState(validationInit)
+    const formik = useFormik({
+        initialValues: { city: 'Пловдив', name: '', phone: '' },
+        validationSchema: Yup.object({
+            city: Yup.string().required('Город обязателен'),
+            name: Yup.string().required('Имя обязательно'),
+            phone: Yup.string()
+                .required('Телефон обязателен')
+                .matches(/^(\+359|359)?\d{8,10}$/, 'Телефон должен быть в формате 359XXXXXXXX'),
+        }),
+        onSubmit: async (values) => {
+            await handlerPushNotification(values);
+        },
+        enableReinitialize: true,
+    });
 
     useEffect(() => {
         if (open) {
@@ -42,77 +54,56 @@ export const ModalOrder = ({
         }
     }, [open])
 
-    const sendMessage = async () => {
+    const sendMessage = async (values: { city: string; name: string; phone: string }) => {
         try {
-            if (!name) {
-                setValidation((s) => ({ ...s, name: false }))
-                return
-            }
-            if (!phone) {
-                setValidation((s) => ({ ...s, phone: false }))
-                return
-            }
-            if (!city) {
-                setValidation((s) => ({ ...s, city: false }))
-                return
-            }
-
             await NOTIFICATIONHTTP.sendMessage({
-                city,
-                name,
-                phone,
+                city: values.city,
+                name: values.name,
+                phone: values.phone,
                 comment,
             })
             setShowAlert(true)
-
             //@ts-ignore
             window?.gtag("event", "conversion", {
                 send_to: "AW-16762469808/r_nuCPPPtOYZELD7-7g-",
-                city,
-                name,
-                phone,
+                city: values.city,
+                name: values.name,
+                phone: values.phone,
                 comment,
             })
             //@ts-ignore
             window?.fbq("track", "Lead", {
-                city,
-                name,
-                phone,
+                city: values.city,
+                name: values.name,
+                phone: values.phone,
                 comment,
             })
         } catch (error) {
             alert("Warning: error with order, ")
         }
     }
-    const handlerPushNotification = async () => {
+    const handlerPushNotification = async (values: { city: string; name: string; phone: string }) => {
         try {
             setLoading(true)
-             await sendMessage()
-        setTimeout(() => {
-            setShowAlert(false)
-            close()
-        }, 2000)
+            await sendMessage(values)
+            setTimeout(() => {
+                setShowAlert(false)
+                close()
+            }, 2000)
         } catch (error) {
-              setLoading(false)
+            setLoading(false)
             alert("Warning: error with order, Admin - 0896608802")
-        }
-        finally{
+        } finally {
             setLoading(false)
         }
-       
-
     }
 
-
-
     useEffect(() => {
-        setCity("Пловдив")
-        setName("")
-        setPhone("")
         setComment("")
     }, [open])
 
-    if(loading) return <CircleLoader />
+    if (loading) return <CircleLoader />
+
     return (
         <>
             {open && (
@@ -136,44 +127,48 @@ export const ModalOrder = ({
                                 <h5>всичко ще заблести Скоро!</h5>
                             </div>
                         ) : (
-                            <>
+                            <form onSubmit={formik.handleSubmit}>
                                 <h5 className="modal-order-title">
                                     Оставете заявка
                                 </h5>
-
                                 <Input
                                     placeholder="Посочете вашия град"
-                                    value={city}
-                                    setValue={(s) => {
-                                        setCity(s)
-                                        setValidation(validationInit)
-                                    }}
-                                    validation={validation.city}
+                                    name="city"
+                                    value={formik.values.city}
+                                    setValue={s => formik.setFieldValue('city', s)}
+                                    validation={!(formik.errors.city && formik.touched.city)}
+                                    onBlur={formik.handleBlur}
                                 />
+                                {formik.errors.city && formik.touched.city && (
+                                    <div style={{ color: 'red', fontSize: 13, marginTop: 2 }}>{formik.errors.city}</div>
+                                )}
                                 <Input
                                     placeholder="Вашето име"
-                                    value={name}
-                                    setValue={(s) => {
-                                        setName(s)
-                                        setValidation(validationInit)
-                                    }}
-                                    validation={validation.name}
+                                    name="name"
+                                    value={formik.values.name}
+                                    setValue={s => formik.setFieldValue('name', s)}
+                                    validation={!(formik.errors.name && formik.touched.name)}
+                                    onBlur={formik.handleBlur}
                                 />
+                                {formik.errors.name && formik.touched.name && (
+                                    <div style={{ color: 'red', fontSize: 13, marginTop: 2 }}>{formik.errors.name}</div>
+                                )}
                                 <Input
                                     placeholder="Телефонен номер"
-                                    value={phone}
-                                    setValue={(s) => {
-                                        setPhone(s)
-                                        setValidation(validationInit)
-                                    }}
-                                    validation={validation.phone}
+                                    name="phone"
+                                    value={formik.values.phone}
+                                    setValue={s => formik.setFieldValue('phone', s)}
+                                    validation={!(formik.errors.phone && formik.touched.phone)}
+                                    onBlur={formik.handleBlur}
                                 />
+                                {formik.errors.phone && formik.touched.phone && (
+                                    <div style={{ color: 'red', fontSize: 13, marginTop: 2 }}>{formik.errors.phone}</div>
+                                )}
                                 <TextArea
                                     placeholder="Коментар"
                                     value={comment}
                                     setValue={setComment}
                                 />
-
                                 <p className="modal-order-text">
                                     С натискането на бутона "Поръчка за
                                     почистване" вие се съгласявате с обработката
@@ -184,13 +179,12 @@ export const ModalOrder = ({
                                         disabled={loading}
                                         icon={<IconsChevronLeft />}
                                         text="Поръчай почистване"
-                                        onClick={handlerPushNotification}
+                                        onClick={formik.submitForm}
                                     />
                                 </div>
-                            </>
+                            </form>
                         )}
                     </div>
-
                     <div className="modal-background" />
                 </>
             )}

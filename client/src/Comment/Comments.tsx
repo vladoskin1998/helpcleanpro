@@ -13,6 +13,8 @@ const validationInit = {
     comment: true,
 }
 const Comments = () => {
+
+    const [isLoading, setIsLoading] = useState(false)
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
     const [comment, setComment] = useState("")
@@ -36,7 +38,14 @@ const Comments = () => {
     const handleClick = (value: number) => {
         setRating(value)
     }
+    const [commentSubmitted, setCommentSubmitted] = useState(false)
 
+    useEffect(() => {
+        const submitted = localStorage.getItem('commentSubmitted')
+        if (submitted === 'true') {
+            setCommentSubmitted(true)
+        }
+    }, [])
     const getComments = async () => {
         try {
             const comments = await COMMENTSHTTP.getComments()
@@ -55,6 +64,7 @@ const Comments = () => {
 
     const addComment = async () => {
         try {
+            setIsLoading(true)
             if (!name) {
                 setValidation((s) => ({ ...s, name: false }))
                 return
@@ -74,9 +84,13 @@ const Comments = () => {
                 rating: rating || 5,
             })
             await getComments()
+            localStorage.setItem('commentSubmitted', 'true')
             scrollToComments()
         } catch (error) {
             console.log(error)
+        }
+        finally{
+                     setIsLoading(false)
         }
     }
 
@@ -84,17 +98,11 @@ const Comments = () => {
     const filteringList = list
         .filter(item => {
             const ratingOk = Number(item.rating) >= 4;
-            const dateOk = (() => {
-                if (!item.dateCreating) return false;
-                const commentDate = new Date(item.dateCreating);
-                const now = new Date();
-                const diffMs = now.getTime() - commentDate.getTime();
-                const diffHours = diffMs / (1000 * 60 * 60);
-                return diffHours > 12;
-            })();
-            return ratingOk && dateOk;
+        
+            return ratingOk ;
         })
         .slice(0, length)
+        
     useEffect(() => {
         getComments()
     }, [])
@@ -157,7 +165,8 @@ const Comments = () => {
                         />
                     )}
                 </div>
-                <div className="comments-form comments-list-item">
+                {
+                    !commentSubmitted ? (     <div className="comments-form comments-list-item">
                     <h5 className="comments-form-title">
                         Моля, напишете отзивите си
                     </h5>
@@ -221,13 +230,25 @@ const Comments = () => {
                         </div>
                         <div className="comments-list-all">
                             <Button
+                                disabled={isLoading}
                                 icon={<IconsChevronLeft />}
                                 text="Оставете отзив"
                                 onClick={addComment}
                             />
                         </div>
                     </div>
-                </div>
+                </div>) :(
+                        <div className="comments-form comments-list-item">
+                        <h5 className="comments-form-title">
+                            Благодарим за вашия отзив!
+                        </h5>
+                        <p className="comments-form-text">
+                            Вашият отзив е изпратен успешно и ще бъде прегледан от нашия екип.
+                        </p>
+                    </div>
+                )
+                }
+           
             </div>
         </div>
     )
