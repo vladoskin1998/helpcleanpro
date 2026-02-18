@@ -1,19 +1,46 @@
 import React, { Suspense, useEffect, useState } from "react"
+import i18n from "../i18n";
 import { Element } from "react-scroll"
 import { Loader } from "./ui/Loader"
 import { ButtonTop } from "./ui/ButtonTop"
 import Main from "./Main"
+import About from "./About";
+import Service from "./Service";
+import PriceBeginning from "./PriceBeginning";
+import Price from "./Price";
+import Contats from "./Contats";
+import Header from "./Header";
 
-
-const About = React.lazy(() => import("./About"))
-
-const Contats = React.lazy(() => import("./Contats"))
-const Header = React.lazy(() => import("./Header"))
-const Price = React.lazy(() => import("./Price"))
-const PriceBeginning = React.lazy(() => import("./PriceBeginning"))
-const Service = React.lazy(() => import("./Service"))
+const LanguageModal = ({ onSelect }: { onSelect: (lang: string) => void }) => (
+  <div className="language-modal-overlay">
+    <div className="language-modal-content">
+      <h2>  Изберете език | Choose language | Выберите язык</h2>
+      <br />
+      <div>
+ <button onClick={() => onSelect("bg")} style={{ margin: 8 }}>Български</button>
+      </div>
+     <div>
+<button onClick={() => onSelect("en")} style={{ margin: 8 }}>English</button>
+     </div>
+      
+      <div>
+<button onClick={() => onSelect("ru")} style={{ margin: 8 }}>Русский</button>
+      </div>
+    </div>
+  </div>
+);
 
 function App() {
+    
+    const [showLangModal, setShowLangModal] = useState(() => !localStorage.getItem('language'));
+
+
+    useEffect(() => {
+        const storedLang = localStorage.getItem('language');
+        if (storedLang && storedLang !== i18n.language) {
+            i18n.changeLanguage(storedLang);
+        }
+    }, []);
 
     const [showButtonTop, setShowButtonTop] = useState(false);
 
@@ -28,9 +55,17 @@ function App() {
         window.removeEventListener("scroll", handleScroll);
       };
     }, []);
+
+
+        const handleLangSelect = (lang: string) => {
+      localStorage.setItem('language', lang);
+      i18n.changeLanguage(lang);
+      setShowLangModal(false);
+    };
+
     return (
         <div className="App">
-            <Suspense fallback={<Loader/>}>
+             {showLangModal && <LanguageModal onSelect={handleLangSelect} />}
                 <Header />
                 <Element name="main">
                     <Main />
@@ -51,7 +86,7 @@ function App() {
                     <Contats />
                 </Element>
                 {showButtonTop && <ButtonTop />}
-            </Suspense>
+    
         </div>
     )
 }

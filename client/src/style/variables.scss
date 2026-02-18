@@ -1,30 +1,30 @@
-$color_black: #000000;
-$color_white: #ffffff;
-
-$color_blue: rgb(247, 247, 247);
-$color_blue1: rgb(50, 96, 212);
-$color_blue2:rgb(131, 166, 255);
-
-$color_black1: rgb(50, 50, 50);
-
-$color_grey: rgb(140, 140, 140);
-$color_grey1: rgb(229, 229, 229);
-$color_grey2: rgb(140, 140, 140);
-
-$boxshadow1: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
-
+:root {
+   
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-blue: rgb(247, 247, 247);
+  --color-blue1: rgb(50, 96, 212);
+  --color-blue2: rgb(131, 166, 255);
+  --color-black1: rgb(50, 50, 50);
+  --color-grey: rgb(140, 140, 140);
+  --color-grey1: rgb(229, 229, 229);
+  --color-grey2: rgb(140, 140, 140);
+  --boxshadow1: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
+}
 
 [data-theme="dark"] {
   --color-black: #ffffff;
-  --color-white: #000000;
+  --color-white: #202020d5;
   --color-blue: #222a36;
-  --color-blue1: #020A1D;
-  --color-blue2: #2a3a4c;
+  --color-blue1: rgb(50, 96, 212);
+  --color-blue2: rgb(131, 166, 255);
   --color-black1: #e0e0e0;
   --color-grey: #888888;
   --color-grey1: #333333;
   --color-grey2: #888888;
   --boxshadow1: 0px 4px 15px 0px rgba(0, 0, 0, 0.4);
+  --switch-track-bg-dark: #c3c1c1;
+   
 }
 
 @mixin main-title() {

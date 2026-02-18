@@ -1,75 +1,48 @@
 import { useState } from "react"
-
+import { useTranslation } from 'react-i18next';
 import { IconsChekBlue, IconsChekWhite, IconsStar } from "./ui/Icons"
 import { ModalOrder } from "./ui/ModalOrder"
 
-const PACKAGE_3_STRAST = [
-    "Сухо и мокро почистване на всички подови настилки",
-    "Основно почистване на санитарни помещения",
-    "Почистване на кухня. Шкафове (външно); Хладилник, фурна, микровълнова и т.н. външно.",
-    "Почистване на прах от всички открити повърхности",
-    "Врати и каси, осветителни тела, ключове на лампи и контакти",
-    "Отстраняване на паяжини и др.",
-]
-const PACKAGE_4_STRAST = [
-    "Почистване на прозорци - стъкла и дограма",
-    "Сухо и мокро почистване на всички подови настилки",
-    "Основно почистване на санитарни помещения",
-    "Почистване на кухня. Шкафове (външно); Хладилник, фурна, микровълнова и т.н. външно. ",
-    "Почистване на прах от всички открити повърхности",
-    "Врати и каси, осветителни тела, ключове на лампи и контакти",
-    "Отстраняване на паяжини и др.",
-]
-const PACKAGE_5_STRAST = [
-    "Почистване на прозорци - стъкла и дограма тераси",
-    "Сухо и мокро почистване на всички подови настилки",
-    "Основно почистване на санитарни помещения",
-    "Почистване на кухня. Шкафове (отвън и отвътре); Хладилник, фурна, микровълнова, климатик и т.н. външно. ",
-    "Почистване на прах от всички открити повърхности",
-    "Врати и каси, осветителни тела, ключове на лампи и контакти",
-    "Отстраняване на паяжини и др.",
-]
-
 const PriceBeginning = () => {
+    const { t } = useTranslation();
     const [openOrder, setOpenOrder] = useState(false)
+    const handlerClose = () => setOpenOrder(false)
 
-    const handlerClose = () => {
-        setOpenOrder(false)
-    }
+    const package3Obj = t('pricebeginning.package3_list', { returnObjects: true }) as Record<string, string>;
+    const package4Obj = t('pricebeginning.package4_list', { returnObjects: true }) as Record<string, string>;
+    const package5Obj = t('pricebeginning.package5_list', { returnObjects: true }) as Record<string, string>;
 
+    const package3 = Object.entries(package3Obj || {});
+    const package4 = Object.entries(package4Obj || {});
+    const package5 = Object.entries(package5Obj || {});
+
+
+    console.log("package3",package3);
+    
     return (
         <div className="pr-beg">
             <div className="container">
                 <div className="pr-beg-who">
                     <div className="pr-beg-who-head">
-                        <h5 className="pr-beg-who-title">
-                            От какво зависи <br /> цената на <br />
-                            почистването?
-                        </h5>
-                        <p className="pr-beg-who-text">
-                            Цената на услугите зависи от няколко фактора, сред
-                            които се открояват:
-                        </p>
+                        <h5 className="pr-beg-who-title" dangerouslySetInnerHTML={{__html: t('pricebeginning.title')}} />
+                        <p className="pr-beg-who-text">{t('pricebeginning.desc')}</p>
                     </div>
                     <div className="pr-beg-who-list">
                         <div className="pr-beg-who-list-item">
                             <h5 className="pr-beg-who-list-item-num">01</h5>
-                            <p>Площ и брой стаи</p>
+                            <p>{t('pricebeginning.area')}</p>
                         </div>
-
                         <div className="pr-beg-who-list-item">
                             <h5 className="pr-beg-who-list-item-num">02</h5>
-                            <p>Степен на замърсяване на помещението</p>
+                            <p>{t('pricebeginning.dirt')}</p>
                         </div>
-
                         <div className="pr-beg-who-list-item">
                             <h5 className="pr-beg-who-list-item-num">03</h5>
-                            <p>Арсенал от химикали, използвани за почистване</p>
+                            <p>{t('pricebeginning.chemicals')}</p>
                         </div>
-
                         <div className="pr-beg-who-list-item">
                             <h5 className="pr-beg-who-list-item-num">04</h5>
-                            <p>Метод на почистване</p>
+                            <p>{t('pricebeginning.method')}</p>
                         </div>
                     </div>
                 </div>
@@ -82,12 +55,8 @@ const PriceBeginning = () => {
             />
             <div className="container">
                 <div className="pr-beg-plan">
-                    <h5 className="pr-beg-plan-title">Ценообразуващ план</h5>
-                    <p className="pr-beg-plan-text">
-                        Предоставяме цялостни услуги за почистване, <br />{" "}
-                        съобразени с вашите нужди - от услуги за почистване
-                    </p>
-
+                    <h5 className="pr-beg-plan-title">{t('pricebeginning.plan_title')}</h5>
+                    <p className="pr-beg-plan-text" dangerouslySetInnerHTML={{__html: t('pricebeginning.plan_desc')}} />
                     <div className="pr-beg-plan-list">
                         <div className="pr-beg-plan-list-item">
                             <div className="pr-beg-plan-list-star pr-beg-plan-list-star-1">
@@ -96,14 +65,14 @@ const PriceBeginning = () => {
                                 <IconsStar />
                             </div>
                             <p className="pr-beg-plan-list-undertitle pr-beg-plan-list-undertitle-1">
-                                Пакет 3 звезди
+                                {t('pricebeginning.package3')}
                             </p>
                             <h5 className="pr-beg-mob pr-beg-plan-list-title pr-beg-plan-list-title-1">
-                                от 2.75 €/м.кв.
+                                {t('pricebeginning.from_275')}
                             </h5>
                             <ul className="pr-beg-plan-list-ul">
-                                {PACKAGE_3_STRAST.map((item, index) => (
-                                    <li key={index}>
+                                {package3?.map(([key, item]) => (
+                                    <li key={key}>
                                         <div>
                                             <IconsChekBlue />
                                         </div>
@@ -115,14 +84,13 @@ const PriceBeginning = () => {
                                 className="pr-beg-plan-list-but"
                                 onClick={() => setOpenOrder(true)}
                             >
-                                Поръчай сега
+                                {t('pricebeginning.order_now')}
                             </button>
                         </div>
-
                         <div>
                             <div className="pr-beg-plan-list-item pr-beg-plan-list-item-1">
                                 <div className="pr-beg-plan-list-sale">
-                                    Найизгодно
+                                    {t('pricebeginning.best')}
                                 </div>
                                 <div className="pr-beg-plan-list-star ">
                                     <IconsStar />
@@ -131,14 +99,14 @@ const PriceBeginning = () => {
                                     <IconsStar />
                                 </div>
                                 <p className="pr-beg-plan-list-undertitle ">
-                                    Пакет 4 звезди
+                                    {t('pricebeginning.package4')}
                                 </p>
                                 <h5 className="pr-beg-mob pr-beg-plan-list-title ">
-                                    от 3.25 €/м.кв.
+                                    {t('pricebeginning.from_325')}
                                 </h5>
                                 <ul className="pr-beg-plan-list-ul">
-                                    {PACKAGE_4_STRAST.map((item, index) => (
-                                        <li key={index}>
+                                    {package4?.map(([key, item]) => (
+                                        <li key={key}>
                                             <div>
                                                 <IconsChekWhite />
                                             </div>
@@ -150,15 +118,19 @@ const PriceBeginning = () => {
                                     className="pr-beg-plan-list-but pr-beg-plan-list-but-1"
                                     onClick={() => setOpenOrder(true)}
                                 >
-                                    Поръчай сега
+                                    {t('pricebeginning.order_now')}
                                 </button>
                             </div>
                             <div className="pr-beg-plan-list-item pr-beg-plan-list-item-1 pr-beg-plan-list-item-2 pr-beg-plan-list-item-last">
-                                <p>Почистване след ремонт</p>
-                                <h5 className="pr-beg-mob">от 4.0 €/м.кв.</h5>
+                                <p>{t('pricebeginning.after_repair')}</p>
+                                <h5 className="pr-beg-mob">{t('pricebeginning.from_4')}</h5>
+                                  <div className="pr-beg-plan-list-span-title ">
+                                    {t('pricebeginning.deep_cleaning_up_to_60')}
+                                    <br />
+                                        {t('pricebeginning.deep_cleaning_over_70')}
+                                </div>
                             </div>
                         </div>
-
                         <div>
                             <div className="pr-beg-plan-list-item">
                                 <div className="pr-beg-plan-list-star pr-beg-plan-list-star-1">
@@ -169,14 +141,15 @@ const PriceBeginning = () => {
                                     <IconsStar />
                                 </div>
                                 <p className=" pr-beg-plan-list-undertitle pr-beg-plan-list-undertitle-1">
-                                    Пакет 5 звезди
+                                    {t('pricebeginning.package5')}
                                 </p>
                                 <h5 className="pr-beg-mob pr-beg-plan-list-title pr-beg-plan-list-title-1">
-                                    от 3.75 €/м.кв.
+                                    {t('pricebeginning.from_375')}
                                 </h5>
+                                 
                                 <ul className="pr-beg-plan-list-ul">
-                                    {PACKAGE_5_STRAST.map((item, index) => (
-                                        <li key={index}>
+                                    {package5?.map(([key, item]) => (
+                                        <li key={key}>
                                             <div>
                                                 <IconsChekBlue />
                                             </div>
@@ -188,7 +161,7 @@ const PriceBeginning = () => {
                                     className="pr-beg-plan-list-but"
                                     onClick={() => setOpenOrder(true)}
                                 >
-                                    Поръчай сега
+                                    {t('pricebeginning.order_now')}
                                 </button>
                             </div>
                         </div>

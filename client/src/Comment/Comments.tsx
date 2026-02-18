@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
-import { IconsChevronLeft, IconsMain, IconsPlus, IconsStar } from "../App/ui/Icons"
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useTranslation } from 'react-i18next';
+import { IconsChevronLeft,  IconsPlus, IconsStar } from "../App/ui/Icons"
 import { Input } from "../App/ui/Input"
 import { TextArea } from "../App/ui/TextArea"
 import { Button } from "../App/ui/Button"
 import { COMMENTSHTTP } from "../api"
-import { Comment, CommentList } from "../types/types"
+import {  CommentList } from "../types/types"
 import { formatDate } from "../utils/utils"
 import { animateScroll as scroll } from "react-scroll"
 const validationInit = {
@@ -15,8 +18,8 @@ const validationInit = {
 const Comments = () => {
 
     const [isLoading, setIsLoading] = useState(false)
-    const [name, setName] = useState("")
-    const [phone, setPhone] = useState("")
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
     const [comment, setComment] = useState("")
     const [rating, setRating] = useState(5)
     const [enterRating, setEnterRating] = useState(5)
@@ -24,7 +27,60 @@ const Comments = () => {
     const [list, setList] = useState<CommentList>([])
     const [length, setLength] = useState(10)
 
-    const [validation, setValidation] = useState(validationInit)
+    const [validation, setValidation] = useState(validationInit);
+
+    // Formik для имени и телефона
+    const { t } = useTranslation();
+    const formik = useFormik({
+        initialValues: {
+            name: "",
+            phone: "",
+        },
+        validationSchema: Yup.object({
+            name: Yup.string().required(t('comments.name_required')),
+            phone: Yup.string()
+                .matches(/^\+?\d{7,15}$/, t('comments.phone_invalid'))
+                .required(t('comments.phone_required')),
+        }),
+        onSubmit: values => {
+            setName(values.name);
+            setPhone(values.phone);
+            setValidation(validationInit);
+            addCommentHandler(values.name, values.phone);
+        },
+    });
+
+    const addCommentHandler = async (formName: string, formPhone: string) => {
+        try {
+            setIsLoading(true)
+            if (!formName) {
+                setValidation((s) => ({ ...s, name: false }))
+                return
+            }
+            if (!formPhone) {
+                setValidation((s) => ({ ...s, phone: false }))
+                return
+            }
+            if (!comment) {
+                setValidation((s) => ({ ...s, comment: false }))
+                return
+            }
+            await COMMENTSHTTP.addComment({
+                name: formName,
+                phone: formPhone,
+                comment,
+                rating: rating || 5,
+            })
+            await getComments()
+            localStorage.setItem('commentSubmitted', 'true')
+            scrollToComments()
+        } catch (error) {
+            console.log(error)
+        }
+        finally {
+            setIsLoading(false)
+        }
+    }
 
     const handleMouseEnter = (value: number) => {
         setEnterRating(value)
@@ -46,6 +102,11 @@ const Comments = () => {
             setCommentSubmitted(true)
         }
     }, [])
+
+    useEffect(() => {
+        const theme = localStorage.getItem('theme');
+        document.body.setAttribute('data-theme', theme === 'dark' ? 'dark' : '');
+    }, []);
     const getComments = async () => {
         try {
             const comments = await COMMENTSHTTP.getComments()
@@ -89,8 +150,8 @@ const Comments = () => {
         } catch (error) {
             console.log(error)
         }
-        finally{
-                     setIsLoading(false)
+        finally {
+            setIsLoading(false)
         }
     }
 
@@ -98,11 +159,11 @@ const Comments = () => {
     const filteringList = list
         .filter(item => {
             const ratingOk = Number(item.rating) >= 4;
-        
-            return ratingOk ;
+
+            return ratingOk;
         })
         .slice(0, length)
-        
+
     useEffect(() => {
         getComments()
     }, [])
@@ -113,7 +174,7 @@ const Comments = () => {
                 <div className="comments-head">
                     <div className="comments-revievs">
                         <p className="comments-revievs-text">
-                            Средна оценка на нашите почиствания:
+                            {t('comments.average')}
                         </p>
                         <div className="comments-stars">
                             <div>
@@ -128,127 +189,109 @@ const Comments = () => {
                             </p>
                         </div>
                     </div>
-
-                    <h5 className="comments-title">
-                        Отзиви за <br /> нашите услуги
-                    </h5>
+                    <h5 className="comments-title" dangerouslySetInnerHTML={{__html: t('comments.title')}} />
                 </div>
-                {
-                    !!list.length && <div className="comments-list">
-                        {
-                            filteringList.map((item) => (
-                                <div className="comments-list-item" key={item._id}>
-                                    <div className="comments-list-item-head">
-                                        <div className="comments-stars">
-                                            <IconsStar />
-                                            <p>{item.rating}</p>
-                                        </div>
-                                        |<b>{item.name}</b>|
-                                        <span>{formatDate(item.dateCreating)}</span>
-                                    </div>
-                                    <div className="comments-list-item-text">
-                                        {item.comment}
-                                    </div>
+                {!!list.length && <div className="comments-list">
+                    {filteringList?.map((item) => (
+                        <div className="comments-list-item" key={item._id}>
+                            <div className="comments-list-item-head">
+                                <div className="comments-stars">
+                                    <IconsStar />
+                                    <p>{item.rating}</p>
                                 </div>
-                            ))}
-                    </div>
-                }
-
+                                |<b>{item.name}</b>|
+                                <span>{formatDate(item.dateCreating)}</span>
+                            </div>
+                            <div className="comments-list-item-text">
+                                {item.comment}
+                            </div>
+                        </div>
+                    ))}
+                </div>}
                 <div className="comments-list-all">
-                    {length >= list.length ? (
-                        <></>
-                    ) : (
+                    {length >= list.length ? null : (
                         <Button
                             icon={<IconsPlus />}
-                            text="повече отзиви"
+                            text={t('comments.more')}
                             onClick={() => setLength((s) => s + 10)}
                         />
                     )}
                 </div>
-                {
-                    !commentSubmitted ? (     <div className="comments-form comments-list-item">
-                    <h5 className="comments-form-title">
-                        Моля, напишете отзивите си
-                    </h5>
-                    <p className="comments-form-text">
-                        Вашите отзиви ни помагат да подобрим услугите си.
-                    </p>
-                    <div className="comments-form-inputs">
-                        <Input
-                            placeholder="Вашето име"
-                            value={name}
-                            setValue={(s) => {
-                                setName(s)
-                                setValidation(validationInit)
-                            }}
-                            validation={validation.name}
-                        />
-                        <Input
-                            placeholder="Телефонен номер"
-                            value={phone}
-                            setValue={(s) => {
-                                setPhone(s)
-                                setValidation(validationInit)
-                            }}
-                            validation={validation.phone}
-                        />
-                    </div>
-                    <div className="comments-form-textarea">
-                        <TextArea
-                            placeholder="Напишете отзивите си тук"
-                            value={comment}
-                            setValue={(s) => {
-                                setComment(s)
-                                setValidation(validationInit)
-                            }}
-                            validation={validation.comment}
-                        />
-                    </div>
-                    <div className="comments-form-req">
-                        <div
-                            className="comments-form-stars"
-                            onMouseLeave={handleMouseLeave}
-                        >
-                            <span>Вашата преценка:</span>
-                            <div className="comments-form-stars-raiting">
-                                {[1, 2, 3, 4, 5].map((item) => (
-                                    <button
-                                        onClick={() => handleClick(item)}
-                                        onMouseEnter={() =>
-                                            handleMouseEnter(item)
-                                        }
-                                        className={`${item <= enterRating ||
-                                                item <= rating
-                                                ? "comments-form-stars-active"
-                                                : ""
-                                            }`}
-                                    >
-                                        <IconsStar />
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="comments-list-all">
-                            <Button
-                                disabled={isLoading}
-                                icon={<IconsChevronLeft />}
-                                text="Оставете отзив"
-                                onClick={addComment}
-                            />
-                        </div>
-                    </div>
-                </div>) :(
-                        <div className="comments-form comments-list-item">
+                {!commentSubmitted ? (
+                    <form className="comments-form comments-list-item" onSubmit={formik.handleSubmit}>
                         <h5 className="comments-form-title">
-                            Благодарим за вашия отзив!
+                            {t('comments.form_title')}
                         </h5>
                         <p className="comments-form-text">
-                            Вашият отзив е изпратен успешно и ще бъде прегледан от нашия екип.
+                            {t('comments.form_text')}
+                        </p>
+                        <div className="comments-form-inputs">
+                            <Input
+                                placeholder={t('comments.name_placeholder')}
+                                value={formik.values.name}
+                                setValue={formik.handleChange("name")}
+                                validation={!formik.errors.name}
+                            />
+                            {formik.errors.name && <div style={{color: "red", position:'absolute', top: '100%'}}>{formik.errors.name}</div>}
+                            <Input
+                                placeholder={t('comments.phone_placeholder')}
+                                value={formik.values.phone}
+                                setValue={formik.handleChange("phone")}
+                                validation={!formik.errors.phone}
+                            />
+                            {formik.errors.phone && <div style={{color: "red", position:'absolute', top: '100%'}}>{formik.errors.phone}</div>}
+                        </div>
+                        <div className="comments-form-textarea">
+                            <TextArea
+                                placeholder={t('comments.comment_placeholder')}
+                                value={comment}
+                                setValue={(s) => {
+                                    setComment(s)
+                                    setValidation(validationInit)
+                                }}
+                                validation={validation.comment}
+                            />
+                        </div>
+                        {validation.comment && <div style={{color: "red", position:'absolute', top: '100%'}}>{validation.comment}</div>}
+                        <div className="comments-form-req">
+                            <div
+                                className="comments-form-stars"
+                                onMouseLeave={handleMouseLeave}
+                            >
+                                <span>{t('comments.your_rating')}</span>
+                                <div className="comments-form-stars-raiting">
+                                    {[1, 2, 3, 4, 5].map((item) => (
+                                        <button
+                                            key={item}
+                                            onClick={() => handleClick(item)}
+                                            onMouseEnter={() => handleMouseEnter(item)}
+                                            className={`${item <= enterRating || item <= rating ? "comments-form-stars-active" : ""}`}
+                                        >
+                                            <IconsStar />
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="comments-list-all">
+                                <Button
+                                    disabled={isLoading}
+                                    icon={<IconsChevronLeft />}
+                                    text={t('comments.submit')}
+                                    onClick={formik.handleSubmit}
+                                />
+                            </div>
+                        </div>
+                    </form>
+                ) : (
+                    <div className="comments-form comments-list-item">
+                        <h5 className="comments-form-title">
+                            {t('comments.thanks_title')}
+                        </h5>
+                        <p className="comments-form-text">
+                            {t('comments.thanks_text')}
                         </p>
                     </div>
-                )
-                }
-           
+                )}
             </div>
         </div>
     )

@@ -1,10 +1,10 @@
 import { Link as ScrollLink, } from "react-scroll"
 import { IconsCall, IconsClose } from "./Icons"
 import { Button } from "./Button"
-
 import { useEffect } from "react"
 import { Link} from 'react-router'
 import { LanguageSelect } from "./Language-select"
+import { useTranslation } from 'react-i18next';
 export const ModalHeader = ({
     open,
     close,
@@ -12,28 +12,26 @@ export const ModalHeader = ({
     open: boolean
     close: () => void
 }) => {
-
+    const { t } = useTranslation();
     useEffect(() => {
         if (open) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "";
         }
-  
         return () => {
             document.body.style.overflow = "";
         };
     }, [open]);
-
     return (
         <>
-          {  <div className={`modal-head ${open && "modal-head-open"}`}>
+            {<div className={`modal-head ${open && "modal-head-open"}`}>
                 <button className="modal-head-close" onClick={close}>
                     <IconsClose />
                 </button>
                 <div className="modal-head-mob  modal-head-header">
-                    <img src={ "/Images/aboutlogo.svg"} alt="help clean pro" />
-                   <div className="burger-select-language"><LanguageSelect/></div>  
+                    <img src={"/Images/aboutlogo.svg"} alt="help clean pro" />
+                    <div className="burger-select-language"><LanguageSelect /></div>
                 </div>
                 <ul className="modal-head-body">
                     <li>
@@ -43,7 +41,7 @@ export const ModalHeader = ({
                             duration={700}
                             onClick={close}
                         >
-                            За нас
+                            {t('modalheader.about')}
                         </ScrollLink>
                     </li>
                     <li>
@@ -53,7 +51,7 @@ export const ModalHeader = ({
                             duration={700}
                             onClick={close}
                         >
-                            Услуги
+                            {t('modalheader.service')}
                         </ScrollLink>
                     </li>
                     <li>
@@ -63,7 +61,7 @@ export const ModalHeader = ({
                             duration={700}
                             onClick={close}
                         >
-                            Цени
+                            {t('modalheader.price')}
                         </ScrollLink>
                     </li>
                     <li>
@@ -71,7 +69,7 @@ export const ModalHeader = ({
                             href="/comment"
                             target="_blank"
                         >
-                            Отзиви
+                            {t('modalheader.reviews')}
                         </a>
                     </li>
                     <li>
@@ -81,7 +79,7 @@ export const ModalHeader = ({
                             duration={700}
                             onClick={close}
                         >
-                            Контакти
+                            {t('modalheader.contacts')}
                         </ScrollLink>
                     </li>
                 </ul>
@@ -89,13 +87,12 @@ export const ModalHeader = ({
                     <a href="tel:+359896832216">
                         <Button
                             icon={<IconsCall />}
-                            text=" +359 896 832 216"
-                            onClick={() => {}}
+                            text={" " + t('modalheader.phone')}
+                            onClick={() => { }}
                         />
                     </a>
                 </div>
-            </div>
-            }
+            </div>}
             {open && <div className="modal-background" />}
         </>
     )

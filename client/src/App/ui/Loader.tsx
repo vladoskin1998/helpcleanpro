@@ -1,4 +1,4 @@
-import { baseURL } from "../../utils/utils"
+
 
 export const Loader = () => {
     return (

@@ -1,30 +1,32 @@
+
 import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import { initReactI18next } from "react-i18next";
+import ru from './locales/ru.json'
+import en from './locales/en.json'
+import bg from './locales/bg.json'
 
 export type LangT = 'ru' | 'en' | 'bg';
+
+ 
 const resources = {
-    ru: {},
-    en: {},
-    bg:{}
-}
-const getLangFromQuery = () => {
-  const params = new URLSearchParams(window.location.search);
-  const lang = params.get('lang')?.toLowerCase();
-  if (lang === 'ru') return 'ru';
-  if (lang === 'bg' ) return 'bg';
-  if (lang === 'en') return 'en';
-  return 'en';
+  ru: { translation: ru },
+  en: { translation: en },
+  bg: { translation: bg }
 };
+console.log(resources);
+
+
 
 i18n
-  .use(initReactI18next)
+  .use(initReactI18next) 
   .init({
     resources,
-    lng: getLangFromQuery(),
-    fallbackLng: 'en',
+    lng: "bg", 
+
+
     interpolation: {
-      escapeValue: false
+      escapeValue: false 
     }
   });
 
-export default i18n;
+  export default i18n;

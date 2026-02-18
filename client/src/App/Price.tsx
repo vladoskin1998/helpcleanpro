@@ -1,200 +1,104 @@
-import { title } from "process"
 import { IconsMain } from "./ui/Icons"
 import { Button } from "./ui/Button"
-
 import { ModalOrder } from "./ui/ModalOrder"
 import { useState } from "react"
+import { useTranslation } from 'react-i18next';
 
-const PRICE_1 = {
-    title: "Почистване на кухня (€./бр.)",
-    list: [
-        {
-            name: "Хладилник",
-                price: "25.00 €",
-        },
-        {
-            name: "Фурна и котлони",
-                price: "30.00 €",
-        },
-        {
-            name: "Абсорбатор",
-                price: "15.00 €",
-        },
-        {
-            name: "Микровълнова",
-                price: "10.00 €",
-        },
-        {
-            name: "Основно почистване на кухня (вътрешно и външно почистване на шкафове фурна, печка и абсорбатор)",
-                price: "75.00 €",
-        },
-    ],
-}
-
-const PRICE_2 = {
-    title: "Санитарни помещения (€./бр.)",
-    list: [
-        {
-            name: "Почистване на баня под 5 кв.м.",
-                price: "25.00 €",
-        },
-        {
-            name: "Почистване на баня над 5 кв.м.",
-                price: "35.00 €",
-        },
-        {
-            name: "Почистване на самостоятелна тоалетна",
-                price: "20.00 €",
-        },
-    ],
-}
-
-const PRICE_3 = {
-    title: "Почистване след ремонт (€./кв.м.)",
-    list: [
-        {
-            name: "Премахване на остатъци от боя, силикон, пръски и следи от боя, лепила, пяна и силикон, остатъци от фугираща смес по фугите на теракота и фаянс.",
-                price: "4.00 €",
-        },
-        {
-            name: "Обезпрашаване на стени, измиване на прозорци, первази, тавани, шкафове, ключове, каси, полиране на всички повърхности и др.",
-            price: "",
-        },
-        {
-            name: "Основно почистване на подови настилки. Измиване на стъкла и дограма. Цялостно почистване на санитарните възли.",
-            price: "",
-        },
-    ],
-}
-
-const PRICE_4 = {
-    title: "Подови настилки (€./кв.м.)",
-    list: [
-        {
-            name: "Прахосмукиране на твърди подови настилки",
-                price: "0.75 €",
-        },
-        {
-            name: "Ръчно мокро почистване на твърди подови настилки",
-                price: "1.00 €",
-        },
-    ],
-}
-
-const PRICE_5 = {
-    title: "Машинно изпиране (€./кв.м.)",
-    list: [
-        {
-            name: "До 50 кв.м.",
-                price: "2.75 €",
-        },
-        {
-            name: "От 51 до 100 кв.м.",
-                price: "1.25 €",
-        },
-        {
-            name: "Над 100 кв.м.",
-                price: "1.00 €",
-        },
-    ],
-}
-
-const PRICE_6 = {
-    title: "Прозорци и дограми (€./кв.м.)",
-    list: [
-        {
-            name: "Професионално почистване на прозорци и витрини стъкла едностранно (до 3м. височина)",
-                price: "1.50 €",
-        },
-        {
-            name: "Професионално почистване на прозорци и витрини стъкла едностранно (над 3м. височина)",
-                price: "2.75 €",
-        },
-        {
-            name: "Почистване на дограма (линеен метър)",
-            price: "След оглед",
-        },
-        {
-            name: "Почистване на прозорци и дограма след основен ремонт, махане на лепенки, боя и силни замърсявания ",
-            price: "След оглед",
-        },
-        {
-            name: "Почистване на комарници",
-                price: "4.50 € | бр.",
-        },
-    ],
-}
-
-const PRICE_7 = {
-    title: "Пране (€./бр.)",
-    list: [
-        {
-            name: "Седалки на диван  (включително облегалка/възглавница)",
-                price: "12.50 €",
-        },
-        {
-            name: "Стол (седалка, облегалка, подлакътници)",
-                price: "9.00 €",
-        },
-        {
-            name: "Фотьойл",
-                price: "25.00 €",
-        },
-        {
-            name: "Табуретка",
-                price: "2.50 €",
-        },
-        {
-            name: "Матрак (единичен, едностранно) ",
-                price: "12.50 €",
-        },
-        {
-            name: "Матрак (двоен, едностранно)",
-                price: "20.00 €",
-        },
-    ],
-}
-
-const PRICE_8 = {
-    title: "Професионално почистване след пожар",
-    price: "по договаряне",
-}
-const PRICE_9 = {
-    title: "Професионално почистване след наводнение",
-    price: "по договаряне",
-}
-
- const Price = () => {
-
+const Price = () => {
+    const { t } = useTranslation();
     const [openOrder, setOpenOrder] = useState(false)
-
     const handlerClose = () => {
         setOpenOrder(false)
     }
 
-    console.log(openOrder);
-    
-    
+ const priceList = [
+    {
+        title: t('price.kitchen_title'),
+        label: "Почистване на кухня от (75€./бр.)",
+        list: [
+            { name: t('price.kitchen_fridge'), label: "Хладилник",  price: "от 35.00 €" },
+            { name: t('price.kitchen_oven'), label: "Фурна и котлони", price: "45.00 €" },
+            { name: t('price.kitchen_hood'), label: "Абсорбатор", price: "20.00 €" },
+            { name: t('price.kitchen_microwave'), label: "Микровълнова", price: "10.00 €" },
+            { name: t('price.kitchen_full'), label: "Основно почистване на кухня (вътрешно и външно почистване на шкафове фурна, печка и абсорбатор)", price: "95.00 €" },
+        ]
+    },
+    {
+        title: t('price.bath_title'),
+        label: "Санитарни помещения (€./бр.)",
+        list: [
+            { name: t('price.bath_small'), label: "Почистване на баня под 5 кв.м.", price: "50.00 €" },
+            { name: t('price.bath_large'), label: "Почистване на баня над 5 кв.м.", price: "60.00 €" },
+            { name: t('price.bath_wc'), label: "Почистване на самостоятелна тоалетна", price: "30.00 €" },
+        ]
+    },
+    {
+        title: t('price.repair_title'),
+        label: "Почистване след ремонт (€./кв.м.)",
+        list: [
+            { name: t('price.repair_paint'), label: "Премахване на остатъци от боя, силикон, пръски и следи от боя, лепила, пяна и силикон, остатъци от фугираща смес по фугите на теракота и фаянс.", price: "4.50 €" },
+            { name: t('price.repair_dust'), label: "Обезпрашаване на стени, измиване на прозорци, первази, тавани, шкафове, ключове, каси, полиране на всички повърхности и др.", price: "" },
+            { name: t('price.repair_full'), label: "Основно почистване на подови настилки. Измиване на стъкла и дограма. Цялостно почистване на санитарните възли.", price: "" },
+        ]
+    },
+    {
+        title: t('price.floor_title'),
+        label: "Подови настилки (€./кв.м.)",
+        list: [
+            { name: t('price.floor_vacuum'), label: "Прахосмукиране на твърди подови настилки", price: "1.25 €" },
+            { name: t('price.floor_wet'), label: "Ръчно мокро почистване на твърди подови настилки", price: "1.00 €" },
+        ]
+    },
+    {
+        title: t('price.machine_title'),
+        label: "Машинно пране (€./кв.м.)",
+        list: [
+            { name: t('price.machine_50'), label: "До 50 кв.м.", price: "3.75 €" },
+            { name: t('price.machine_100'), label: "От 51 до 100 кв.м.", price: "2.75 €" },
+            { name: t('price.machine_over'), label: "Над 100 кв.м.", price: "1.75€" },
+        ]
+    },
+    {
+        title: t('price.window_title'),
+        label: "Прозорци и дограми (€./кв.м.)",
+        list: [
+            { name: t('price.window_low'), label: "Професионално почистване на прозорци и витрини стъкла едностранно (до 3м. височина)", price: "2.45 €" },
+            { name: t('price.window_high'), label: "Професионално почистване на прозорци и витрини стъкла едностранно (над 3м. височина)", price: "2.95 €" },
+            { name: t('price.window_frame'), label: "Почистване на дограма (линеен метър)", price: "2.00 €/м" },
+            { name: t('price.window_after'), label: "Почистване на прозорци и дограма след основен ремонт, махане на лепенки, боя и силни замърсявания ", price: "от 5 €/м2" },
+            { name: t('price.window_net'), label: "Почистване на комарници", price: "9.50 € | бр." },
+        ]
+    },
+    {
+        title: t('price.wash_title'),
+        label: "Пране (€./бр.)",
+        list: [
+            { name: t('price.wash_sofa'), label: "Седалки на диван  (включително облегалка/възглавница)", price: "16.00 €" },
+            { name: t('price.wash_chair'), label: "Стол (седалка, облегалка, подлакътници)", price: "12.00 €" },
+            { name: t('price.wash_armchair'), label: "Фотьойл", price: "30.00 €" },
+            { name: t('price.wash_taburet'), label: "Табуретка", price: "5.00 €" },
+            { name: t('price.wash_mattress1'), label: "Матрак (единичен, едностранно) ", price: "20.00 €" },
+            { name: t('price.wash_mattress2'), label: "Матрак (двоен, едностранно)", price: "40.00 €" },
+        ]
+    },
+];
+
+const priceListExtra = [
+    { title: t('price.fire_title'), label: "Професионално почистване след пожар", price: "от 12 €/м2" },
+    { title: t('price.flood_title'), label: "Професионално почистване след наводнение", price: "от 15 €/м2" },
+];
     return (
         <>
             <div className="price">
                 <div className="container">
-                    <h5 className="price-title">Цени за почистване</h5>
+                    <h5 className="price-title">{t('price.title')}</h5>
                     <div className="price-list">
-                        {[
-                            PRICE_1,
-                            PRICE_2,
-                            PRICE_3,
-                            PRICE_4,
-                            PRICE_5,
-                            PRICE_6,
-                            PRICE_7,
-                        ].map((item, index) => (
-                            <div className="price-list-item">
+                        {priceList?.map((item, index) => (
+                            <div className="price-list-item" key={index}>
                                 <h6>{item.title}</h6>
                                 <ul>
-                                    {item?.list.map((pr) => (
-                                        <li>
+                                    {item?.list?.map((pr, idx) => (
+                                        <li key={idx}>
                                             <p>{pr.name}</p>
                                             <span className="price-value">
                                                 {pr.price.split(' / ')[0]}
@@ -213,8 +117,8 @@ const PRICE_9 = {
                         ))}
                     </div>
                     <div className="price-list price-list-1">
-                        {[PRICE_8, PRICE_9].map((item) => (
-                            <div className="price-list-item price-list-item-1">
+                        {priceListExtra.map((item, idx) => (
+                            <div className="price-list-item price-list-item-1" key={idx}>
                                 <h6>{item.title}</h6>
                                 <p>{item.price}</p>
                             </div>
@@ -223,30 +127,24 @@ const PRICE_9 = {
 
                     <div className="price-foot">
                         <div className="price-foot-box">
-                            Добавка върху основната цена: от 15% до 100% при
-                            празнични дни, неблагоприятни условия, нощен труд,
-                            стълбища и силна замърсеност или експресна поръчка.
+                            {t('price.foot1')}
                             <br />
                             <br />
-                            Всички цени може да се повишат след оглед на обекта,
-                            в зависимост от степента на замърсяване и достъпа за
-                            почистване.
-                              <br />
+                            {t('price.foot2')}
                             <br />
-                            Минимална поръчка за София 125.00 €, за Пловдив 75.00 €., за Бургас 175.00 €.
                             <br />
-                            <br />*има пътна такса
+                            {t('price.foot3')}
+                            <br />
+                            <br />
+                            {t('price.foot4')}
                         </div>
                         <div>
                             <p>
-                                Ако не виждате цените за почистване, които Ви{" "}
-                                <br />
-                                интересуват, свържете се с нас.
-                              
+                                {t('price.foot5')}
                             </p>
                             <Button
                                 icon={<IconsMain />}
-                                text="свържете се с нас"
+                                text={t('price.contact')}
                                 onClick={() => setOpenOrder(true)}
                             />
                         </div>

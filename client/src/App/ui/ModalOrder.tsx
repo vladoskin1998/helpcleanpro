@@ -1,4 +1,4 @@
-import { Link as ScrollLink, Element } from "react-scroll"
+
 import { IconsCheck, IconsChevronLeft, IconsClose } from "./Icons"
 import { Input } from "./Input"
 import { useFormik } from 'formik';
@@ -8,12 +8,8 @@ import { TextArea } from "./TextArea"
 import { Button } from "./Button"
 import { NOTIFICATIONHTTP } from "../../api"
 import { CircleLoader } from "./Loader"
+import { useTranslation } from 'react-i18next';
 
-const validationInit = {
-    name: true,
-    phone: true,
-    city: true,
-}
 
 export const ModalOrder = ({
     open,
@@ -27,14 +23,15 @@ export const ModalOrder = ({
     const [comment, setComment] = useState("")
     const [showAlert, setShowAlert] = useState(false)
 
+    const { t } = useTranslation();
     const formik = useFormik({
         initialValues: { city: 'Пловдив', name: '', phone: '' },
         validationSchema: Yup.object({
-            city: Yup.string().required('Город обязателен'),
-            name: Yup.string().required('Имя обязательно'),
+            city: Yup.string().required(t('modalorder.city_required')),
+            name: Yup.string().required(t('modalorder.name_required')),
             phone: Yup.string()
-                .required('Телефон обязателен')
-                .matches(/^(\+359|359)?\d{8,10}$/, 'Телефон должен быть в формате 359XXXXXXXX'),
+                .required(t('modalorder.phone_required'))
+                .matches(/^(359|359)?\d{8,10}$/, t('modalorder.phone_invalid')),
         }),
         onSubmit: async (values) => {
             await handlerPushNotification(values);
@@ -92,7 +89,7 @@ export const ModalOrder = ({
             }, 2000)
         } catch (error) {
             setLoading(false)
-            alert("Warning: error with order, Admin - 0896608802")
+            alert("Warning: error with order, Admin - (089)-66-08-802")
         } finally {
             setLoading(false)
         }
@@ -117,22 +114,19 @@ export const ModalOrder = ({
                         </button>
                         {showAlert ? (
                             <div className="modal-order-alert flex-all-center">
-                                <h5>
-                                    Всичко е наред, <br />
-                                    заявката ви е оставена!
-                                </h5>
+                                <h5 dangerouslySetInnerHTML={{__html: t('modalorder.success_title')}} />
                                 <div className="modal-order-alert-icon">
                                     <IconsCheck />
                                 </div>
-                                <h5>всичко ще заблести Скоро!</h5>
+                                <h5>{t('modalorder.success_soon')}</h5>
                             </div>
                         ) : (
                             <form onSubmit={formik.handleSubmit}>
                                 <h5 className="modal-order-title">
-                                    Оставете заявка
+                                    {t('modalorder.title')}
                                 </h5>
                                 <Input
-                                    placeholder="Посочете вашия град"
+                                    placeholder={t('modalorder.city_placeholder')}
                                     name="city"
                                     value={formik.values.city}
                                     setValue={s => formik.setFieldValue('city', s)}
@@ -143,7 +137,7 @@ export const ModalOrder = ({
                                     <div style={{ color: 'red', fontSize: 13, marginTop: 2 }}>{formik.errors.city}</div>
                                 )}
                                 <Input
-                                    placeholder="Вашето име"
+                                    placeholder={t('modalorder.name_placeholder')}
                                     name="name"
                                     value={formik.values.name}
                                     setValue={s => formik.setFieldValue('name', s)}
@@ -154,7 +148,7 @@ export const ModalOrder = ({
                                     <div style={{ color: 'red', fontSize: 13, marginTop: 2 }}>{formik.errors.name}</div>
                                 )}
                                 <Input
-                                    placeholder="Телефонен номер"
+                                    placeholder={t('modalorder.phone_placeholder')}
                                     name="phone"
                                     value={formik.values.phone}
                                     setValue={s => formik.setFieldValue('phone', s)}
@@ -165,20 +159,18 @@ export const ModalOrder = ({
                                     <div style={{ color: 'red', fontSize: 13, marginTop: 2 }}>{formik.errors.phone}</div>
                                 )}
                                 <TextArea
-                                    placeholder="Коментар"
+                                    placeholder={t('modalorder.comment_placeholder')}
                                     value={comment}
                                     setValue={setComment}
                                 />
                                 <p className="modal-order-text">
-                                    С натискането на бутона "Поръчка за
-                                    почистване" вие се съгласявате с обработката
-                                    на лични данни.
+                                    {t('modalorder.personal_data')}
                                 </p>
                                 <div className="comments-list-all modal-order-button">
                                     <Button
                                         disabled={loading}
                                         icon={<IconsChevronLeft />}
-                                        text="Поръчай почистване"
+                                        text={t('modalorder.submit')}
                                         onClick={formik.submitForm}
                                     />
                                 </div>

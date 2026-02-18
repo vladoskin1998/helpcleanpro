@@ -3,6 +3,7 @@
 @import "./ui.scss";
 @import "./card.scss";
 @import "./loading.scss";
+@import "./switch.scss";
 
 body {
     scroll-behavior: smooth;
@@ -13,8 +14,8 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: $color_blue;
-    color: $color_black1;
+    background-color: var(--color-blue);
+    color: var(--color-black1);
     overflow-x: hidden;
     width: 100%;
 }
@@ -36,14 +37,14 @@ body {
 }
 
 .header {
-    overflow: hidden;
+    // overflow: hidden;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     padding: 0 40px;
     z-index: 4;
-    background-color: $color_blue;
+    background-color: var(--color-blue);
     -webkit-transition: transform 0.4s ease-in-out;
     -moz-transition: transform 0.4s ease-in-out;
     -o-transition: transform 0.4s ease-in-out;
@@ -73,7 +74,7 @@ body {
                     -moz-transition: all 0.3s ease-in-out;
                     -o-transition: all 0.3s ease-in-out;
                     transition: all 0.3s ease-in-out;
-                    fill: $color_blue1;
+                    fill: var(--color-blue1);
                 }
             }
         }
@@ -99,7 +100,7 @@ body {
 
         &-line {
             width: 24px;
-            border: 1px solid $color_black1;
+            border: 1px solid var(--color-black1);
         }
     }
 
@@ -132,7 +133,7 @@ body {
     height: 100%;
     padding-left: 96px;
     display: flex;
-    background-color: $color_blue1;
+    background-color: var(--color-blue1);
     align-items: center;
     -webkit-transition: transform 0.4s ease-in-out;
     -moz-transition: transform 0.4s ease-in-out;
@@ -157,7 +158,7 @@ body {
         font-weight: 400;
         line-height: 51px;
         letter-spacing: 0%;
-        color: $color_white;
+        color: var(--color-white);
 
         li {
             -webkit-transition: all 0.2s ease-in-out;
@@ -190,10 +191,11 @@ body {
             position: absolute;
             top: 31px;
             width: 70%;
-            img{
+
+            img {
                 margin: 0 auto;
             }
-         
+
 
             p {
                 padding-top: 35px;
@@ -202,7 +204,7 @@ body {
                 font-weight: 600;
                 line-height: 20px;
                 letter-spacing: 0%;
-                color: $color_white;
+                color: var(--color-white);
                 text-align: center;
             }
         }
@@ -226,10 +228,10 @@ body {
     width: 440px;
     max-height: 90vh;
     height: 100%;
-    border: 2px solid $color_grey1;
+    border: 2px solid var(--color-grey1);
     border-radius: 40px;
-    box-shadow: $boxshadow1;
-    background: $color_white;
+    box-shadow: var(--boxshadow1);
+    background: var(--color-white);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -273,7 +275,7 @@ body {
         font-weight: 400;
         line-height: 15px;
         letter-spacing: 0%;
-        color: $color_grey2;
+        color: var(--color-grey2);
         padding-bottom: 20px;
     }
 
@@ -283,7 +285,7 @@ body {
 
         svg {
             path {
-                stroke: $color_grey2;
+                stroke: var(--color-grey2);
             }
         }
     }
@@ -396,11 +398,11 @@ body {
             min-width: 350px;
             height: 344px;
             border-radius: 40px;
-            box-shadow: $boxshadow1;
-            background: $color_white;
+            box-shadow: var(--boxshadow1);
+            background: var(--color-white);
 
             &-num {
-                color: $color_blue1;
+                color: var(--color-blue1);
                 font-size: 20px;
                 font-weight: 700;
                 line-height: 24px;
@@ -429,8 +431,8 @@ body {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                background: $color_blue1;
-                color: $color_blue;
+                background: var(--color-blue1);
+                color: var(--color-blue);
 
                 img {
                     width: 161px;
@@ -524,12 +526,12 @@ body {
             }
 
             &-1 {
-                background: $color_blue1;
-                color: $color_blue;
+                background: var(--color-blue1);
+                color: var(--color-blue);
             }
 
             &-2 {
-                background: $color_white;
+                background: var(--color-white);
             }
 
             &-num {
@@ -555,11 +557,11 @@ body {
             &-item {
                 gap: 24px;
                 padding: 30px 20px;
-                background: $color_blue1 !important;
-                color: $color_white;
+                background: var(--color-blue1) !important;
+                color: var(--color-white);
 
                 p {
-                    color: $color_white !important;
+                    color: var(--color-white) !important;
                 }
 
                 &-last {
@@ -594,7 +596,7 @@ body {
 
     &-list {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 20px;
         height: 254px;
     }
@@ -631,14 +633,19 @@ body {
     }
 }
 
+.about-bloger-list-item {
+    display: flex;
+    justify-content: center;
+}
+
 .service {
     padding: 140px 40px;
-    background-color: $color_blue1;
+    background-color: var(--color-blue1);
 
     &-title {
         @include main-title;
         padding-bottom: 80px;
-        color: $color_white;
+        color: var(--color-white);
         text-align: end;
     }
 
@@ -650,9 +657,9 @@ body {
         &-item {
             height: 254px;
             padding: 45px 40px;
-            background-color: $color_white;
+            background-color: var(--color-white);
             border-radius: 40px;
-            box-shadow: $boxshadow1;
+            box-shadow: var(--boxshadow1);
             @include main-parag;
             display: flex;
             flex-direction: column;
@@ -673,7 +680,7 @@ body {
             }
 
             &-title {
-                color: $color_blue1;
+                color: var(--color-blue1);
                 font-size: 20px;
                 font-weight: 700;
                 line-height: 24px;
@@ -726,8 +733,8 @@ body {
 
         &-item {
             border-radius: 30px;
-            box-shadow: $boxshadow1;
-            background: $color_white;
+            box-shadow: var(--boxshadow1);
+            background: var(--color-white);
             padding: 45px 40px;
             height: 240px;
             display: flex;
@@ -739,7 +746,7 @@ body {
             letter-spacing: 0%;
 
             &-num {
-                color: $color_blue1;
+                color: var(--color-blue1);
             }
         }
     }
@@ -799,18 +806,18 @@ body {
             height: fit-content;
             padding: 50px 40px;
             border-radius: 40px;
-            box-shadow: $boxshadow1;
-            background: $color_white;
+            box-shadow: var(--boxshadow1);
+            background: var(--color-white);
 
             &-1 {
                 position: relative;
-                background: $color_blue1;
-                color: $color_white;
+                background: var(--color-blue1);
+                color: var(--color-white);
             }
 
             &-2 {
                 margin-top: 30px;
-                color: $color_white;
+                color: var(--color-white);
 
                 p {
                     font-size: 20px;
@@ -838,10 +845,10 @@ body {
             top: 0;
             left: 50%;
             transform: translate(-50%, -50%);
-            border: 2px solid $color_blue1;
+            border: 2px solid var(--color-blue1);
             border-radius: 51.58px;
-            background: $color_blue;
-            color: $color_blue1;
+            background: var(--color-blue);
+            color: var(--color-blue1);
             font-size: 16px;
             font-weight: 700;
             line-height: 150%;
@@ -860,7 +867,7 @@ body {
             text-align: center;
 
             &-1 {
-                color: $color_blue1;
+                color: var(--color-blue1);
             }
         }
 
@@ -871,10 +878,10 @@ body {
             letter-spacing: 0%;
             padding-bottom: 28px;
             text-align: center;
-            border-bottom: 1px solid $color_white;
+            border-bottom: 1px solid var(--color-white);
 
             &-1 {
-                border-bottom: 1px solid $color_blue1;
+                border-bottom: 1px solid var(--color-blue1);
             }
         }
 
@@ -888,7 +895,7 @@ body {
             &-1 {
                 svg {
                     path {
-                        fill: $color_blue1;
+                        fill: var(--color-blue1);
                     }
                 }
             }
@@ -917,13 +924,13 @@ body {
             letter-spacing: 0%;
             text-align: center;
             text-transform: uppercase;
-            background-color: $color_blue1;
-            color: $color_white;
+            background-color: var(--color-blue1);
+            color: var(--color-white);
             width: 100%;
 
             &-1 {
-                background-color: $color_white;
-                color: $color_blue1;
+                background-color: var(--color-white);
+                color: var(--color-blue1);
             }
         }
     }
@@ -984,8 +991,8 @@ body {
         &-item {
             padding: 54px 86px 80px 86px;
             border-radius: 40px;
-            box-shadow: $boxshadow1;
-            background: $color_white;
+            box-shadow: var(--boxshadow1);
+            background: var(--color-white);
 
             &-1 {
                 padding: 75px 86px;
@@ -1000,7 +1007,7 @@ body {
                 font-weight: 700;
                 line-height: 22px;
                 letter-spacing: 0%;
-                color: $color_blue1;
+                color: var(--color-blue1);
                 padding-bottom: 40px;
             }
 
@@ -1052,8 +1059,8 @@ body {
 
         &-box {
             border-radius: 40px;
-            box-shadow: $boxshadow1;
-            background: $color_blue1;
+            box-shadow: var(--boxshadow1);
+            background: var(--color-blue1);
             padding: 50px 40px;
             max-width: 433px;
             width: 100%;
@@ -1061,7 +1068,7 @@ body {
             font-weight: 400;
             line-height: 22px;
             letter-spacing: 0%;
-            color: $color_white;
+            color: var(--color-white);
         }
 
         button {
@@ -1134,7 +1141,7 @@ body {
             margin-right: 10px;
 
             path {
-                fill: $color_blue1;
+                fill: var(--color-blue1);
             }
         }
 
@@ -1145,7 +1152,7 @@ body {
             letter-spacing: 0%;
             text-align: left;
             text-transform: uppercase;
-            color: $color_blue1;
+            color: var(--color-blue1);
         }
     }
 
@@ -1158,8 +1165,8 @@ body {
 
         &-item {
             border-radius: 30px;
-            box-shadow: $boxshadow1;
-            background: $color_white;
+            box-shadow: var(--boxshadow1);
+            background: var(--color-white);
             padding: 50px 40px;
 
             .comments-stars {
@@ -1179,7 +1186,7 @@ body {
                 }
 
                 span {
-                    color: $color_grey;
+                    color: var(--color-grey);
                 }
 
                 margin-bottom: 40px;
@@ -1239,7 +1246,7 @@ body {
 
             svg {
                 path {
-                    stroke: $color_blue1;
+                    stroke: var(--color-blue1);
                 }
             }
 
@@ -1251,7 +1258,7 @@ body {
             &-active {
                 svg {
                     path {
-                        fill: $color_blue1;
+                        fill: var(--color-blue1);
                     }
                 }
             }
@@ -1304,13 +1311,13 @@ body {
 }
 
 .contacts {
-    background-color: $color_blue1;
+    background-color: var(--color-blue1);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 80px;
     padding-bottom: 20px;
-    color: $color_white;
+    color: var(--color-white);
     font-size: 20px;
     font-weight: 700;
     line-height: 24px;
@@ -1335,17 +1342,17 @@ body {
 
         .ui-button {
             &-text {
-                color: $color_white !important;
+                color: var(--color-white) !important;
                 z-index: 2;
             }
 
             &-circle {
-                background: $color_white !important;
+                background: var(--color-white) !important;
             }
 
             &:hover {
                 .ui-button-text {
-                    color: $color_blue1 !important;
+                    color: var(--color-blue1) !important;
                 }
             }
         }
@@ -1374,10 +1381,10 @@ body {
 
             .ui-button {
                 width: 300px;
-                background: $color_white !important;
+                background: var(--color-white) !important;
 
                 &-text {
-                    color: $color_blue1 !important;
+                    color: var(--color-blue1) !important;
                     z-index: 2;
                 }
             }
@@ -1392,7 +1399,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: 3;
-    background: $color_blue;
+    background: var(--color-blue);
     opacity: 0.9;
 }
 
@@ -1414,7 +1421,7 @@ body {
     border-radius: 50%;
     padding-bottom: 5px;
     z-index: 115;
-    background: $color_blue2;
+    background: var(--color-blue2);
     -webkit-transition: transform 0.2s ease-in-out;
     -moz-transition: transform 0.2s ease-in-out;
     -o-transition: transform 0.2s ease-in-out;
@@ -1476,21 +1483,22 @@ body {
 
 
 .select-language {
- 
+
     position: relative;
     background-color: inherit;
     border: none;
     padding: 0;
+    width: 60px !important;
 
     option {
-          width: 60px;
+        width: 60px !important;
         background-color: inherit;
     }
 
     option:hover,
     option:focus {
-        background: $color_blue1;
-             color: white;
+        background: var(--color-blue1);
+        color: var(--color-white);
     }
 
     ::picker(select) {
@@ -1499,31 +1507,94 @@ body {
 
 
     option:checked {
-        
-        color: $color_white;
-        background: $color_blue1;
-        background-color: $color_blue1;
-      
+
+        color: var(--color-white);
+        background: var(--color-blue1);
+        background-color: var(--color-blue1);
+
         border: none;
     }
 }
 
 select::picker-icon {
-  color: $color_grey;
-  transition: 0.4s rotate;
+    color: var(--color-grey);
+    transition: 0.4s rotate;
 }
 
-.burger-select-language{
-   display: flex;
-   margin-top: 20px;
-   justify-content: center;
-  
-   .select-language{
-    color: $color_white;
+.burger-select-language {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
 
-   }
-   select::picker-icon {
-     color: $color_white;
-  transition: 0.4s rotate;
+    .select-language {
+        color: var(--color-white);
+
+    }
+
+    select::picker-icon {
+        color: var(--color-white);
+        transition: 0.4s rotate;
+    }
 }
+
+.custom-select__list {
+    position: absolute;
+    top: 35px;
+    left: -50px;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #222;
+    border-radius: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    z-index: 1000;
+    width: 120px;
+}
+
+.label-before,
+.field input:focus+label::before,
+.field input:valid+label::before {
+    background-color: transparent;
+    color: var(--color-black1);
+}
+
+.header-img {
+    svg {
+        path {
+            fill: var(--color-black1);
+
+        }
+    }
+}
+
+.select__selected {
+    cursor: pointer;
+}
+
+
+.language-modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; 
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.language-modal-content {
+  background: #fff;
+  padding: 42px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.pr-beg-plan-list-span-title{
+    padding-top: 22px;
+    text-align: center;
+    font-size: 14px;
 }

@@ -1,5 +1,5 @@
-import { Link as ScrollLink } from "react-scroll"
 
+import { Link as ScrollLink } from "react-scroll"
 import { Button } from "./ui/Button"
 import {
     IconsCall,
@@ -10,8 +10,10 @@ import {
     IconsViber,
     IconsWa,
 } from "./ui/Icons"
+import { useTranslation } from 'react-i18next';
 
 const Contats = () => {
+    const { t } = useTranslation();
     return (
         <div className="contacts">
             <div>
@@ -19,13 +21,12 @@ const Contats = () => {
                     to="main"
                     smooth={true}
                     duration={700}
-                 
                 >
                     <img src={ "/Images/aboutlogo.png"} alt="help clean pro" />
                 </ScrollLink>
             </div>
-            <p className="contacts-title">Ние сме на линия 24/7</p>
-            <p className="contacts-phone">+359 896 832 216 <div>+359 896 608 802</div> </p>
+            <p className="contacts-title">{t('contacts.title')}</p>
+            <div className="contacts-phone">{t('contacts.phone')} <div>{t('contacts.phone2')}</div> </div>
             <div className="contacts-net">
                 <a href="https://www.instagram.com/helpcleanpro/profilecard/?igsh=MXJlMzh6eW14MjN6aA==" target="_blank">
                     <IconsIns />
@@ -48,18 +49,17 @@ const Contats = () => {
             </div>
             <div className=" comments-list-all contacts-button">
                 <a href="tel:+359896832216">
-                 
                     <Button
                         icon={<IconsCall />}
-                        text="свържете се с нас"
+                        text={t('contacts.button')}
                         onClick={() => {}}
                     />
                 </a>
             </div>
             <p className="contacts-madeby">
-                Made by{" "}
+                {t('contacts.madeby')} {" "}
                 <a href="https://www.instagram.com/rv_studiocode?igsh=MXV6aDRrZWdjdTBzaA==">
-                    <span>RV Studiocode</span>
+                    <span>{t('contacts.studio')}</span>
                 </a>
             </p>
             <div className="contacts-madeby">

@@ -1,6 +1,9 @@
 
 
+import { useTranslation } from 'react-i18next';
+
 const About = () => {
+    const { t } = useTranslation();
 
     return (
         <>
@@ -8,14 +11,9 @@ const About = () => {
                 <div className="about">
                     <div className="about-head">
                         <div className="about-img">
-                            <h5>Клийнинг</h5>
-                            <p>
-                                Клийнинг това е процес на професионално
-                                почистване и поддържане на чистота в различни
-                                помещения, като жилищни домове, офиси, търговски
-                                сгради, хотели, медицински заведения и др.
-                            </p>Отзиви
-                            <p>Основните цели на почистването включват:</p>
+                            <h5>{t('about.title')}</h5>
+                            <p>{t('about.desc')}</p>
+                            <p>{t('about.goals')}</p>
                         </div>
                         <div className="girls-hcpro-img">
                             <img src= "/Images/girls-hcpro.jpg" alt="help clean pro" />
@@ -111,83 +109,36 @@ const About = () => {
             />
             <div className="container">
                 <div className="about-us">
-                    <h5 className="about-us-title">Защо ние?</h5>
-                    <p className="about-us-text">
-                        Когато клиентите ни изберат <br />
-                        за своите нужди от почистване, те получават:
-                    </p>
-
+                    <h5 className="about-us-title">{t('about.why_us')}</h5>
+                    <p className="about-us-text" dangerouslySetInnerHTML={{__html: t('about.why_us_text')}} />
                     <div className="about-us-list">
                         <div className="about-list-item about-us-list-item about-us-list-item-1">
-                            <p className="about-list-item-num about-us-list-item-num">
-                                01
-                            </p>
-                            <h6 className="about-list-item-title">
-                                Професионализъм и опит
-                            </h6>
-                            <p className="about-list-item-text">
-                                Нашият персонал има дългогодишен опит и
-                                преминава редовно обучение, за да осигури
-                                най-високо ниво на обслужване.
-                            </p>
+                            <p className="about-list-item-num about-us-list-item-num">01</p>
+                            <h6 className="about-list-item-title">{t('about.professionalism')}</h6>
+                            <p className="about-list-item-text">{t('about.professionalism_text')}</p>
                         </div>
-
                         <div className="about-list-item about-us-list-item about-us-list-item-2">
                             <p className="about-list-item-num ">02</p>
-                            <h6 className="about-list-item-title">
-                                Качество и надеждност
-                            </h6>
-                            <p className="about-list-item-text">
-                                Ние използваме само тествани и качествени
-                                продукти и оборудване, за да гарантираме чистота
-                                и безопасност.
-                            </p>
+                            <h6 className="about-list-item-title">{t('about.quality')}</h6>
+                            <p className="about-list-item-text">{t('about.quality_text')}</p>
                         </div>
-
                         <div className="about-list-item about-us-list-item about-us-list-item-2">
                             <p className="about-list-item-num ">03</p>
-                            <h6 className="about-list-item-title">
-                                Индивидуален подход
-                            </h6>
-                            <p className="about-list-item-text">
-                                Ние съобразяваме услугите си със специфичните
-                                нужди и изисквания на всеки клиент.
-                            </p>
+                            <h6 className="about-list-item-title">{t('about.individual')}</h6>
+                            <p className="about-list-item-text">{t('about.individual_text')}</p>
                         </div>
-
                         <div className="about-list-item about-us-list-item about-us-list-item-1">
-                            <p className="about-list-item-num about-us-list-item-num">
-                                04
-                            </p>
-                            <h6 className="about-list-item-title">
-                                Гъвкавост и удобство
-                            </h6>
-                            <p className="about-list-item-text">
-                                Предлагаме разнообразни пакети и графици, за да
-                                отговорим най-добре на нуждите на нашите
-                                клиенти.
-                            </p>
+                            <p className="about-list-item-num about-us-list-item-num">04</p>
+                            <h6 className="about-list-item-title">{t('about.flexibility')}</h6>
+                            <p className="about-list-item-text">{t('about.flexibility_text')}</p>
                         </div>
-
                         <div className="about-list-item about-us-list-item about-us-list-item-1">
-                            <p className="about-list-item-num about-us-list-item-num">
-                                05
-                            </p>
-                            <h6 className="about-list-item-title">
-                                щадящи околната среда
-                            </h6>
-                            <p className="about-list-item-text">
-                                Грижим се за природата и използваме щадящи
-                                околната среда почистващи продукти.
-                            </p>
+                            <p className="about-list-item-num about-us-list-item-num">05</p>
+                            <h6 className="about-list-item-title">{t('about.eco')}</h6>
+                            <p className="about-list-item-text">{t('about.eco_text')}</p>
                         </div>
-
                         <div className="about-list-item about-us-list-item about-us-list-item-2 about-us-list-item-last">
-                            <p>
-                                Клиентите ни могат да бъдат сигурни в чистотата
-                                и подредеността, поверявайки имуществото си в
-                                нашите ръце.
-                            </p>
+                            <p>{t('about.trust')}</p>
                         </div>
                     </div>
                 </div>
@@ -201,12 +152,8 @@ const About = () => {
             <div className="container">
                 <div className="about-bloger">
                     <div className="about-bloger-head">
-                        <h5 className="about-bloger-title">
-                            На нас се доверяват
-                        </h5>
-                        <p className="about-bloger-text">
-                            Работим с известни блогъри и компании като:
-                        </p>
+                        <h5 className="about-bloger-title">{t('about.trusted_by')}</h5>
+                        <p className="about-bloger-text">{t('about.trusted_by_text')}</p>
                     </div>
 
                     <div className="about-bloger-list">
@@ -257,7 +204,7 @@ const About = () => {
                                 </div>
                             </div>
                         </a>
-                        <a className="about-bloger-list-item" href="https://www.instagram.com/raw.photostudio.pl/" target="_blank">
+                        {/* <a className="about-bloger-list-item" href="https://www.instagram.com/raw.photostudio.pl/" target="_blank">
                             <div className="card">
                                 <div className="card-inner">
                                     <div className="card-front">
@@ -274,7 +221,7 @@ const About = () => {
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </a> */}
                     </div>
                 </div>
             </div>

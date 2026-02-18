@@ -1,111 +1,63 @@
- const Service = () => {
+import { useTranslation } from 'react-i18next';
+
+const Service = () => {
+    const { t } = useTranslation();
+    const regularObj = t('service.regular_list', { returnObjects: true }) as Record<string, string>;
+    const generalObj = t('service.general_list', { returnObjects: true }) as Record<string, string>;
+    const afterrepairObj = t('service.afterrepair_list', { returnObjects: true }) as Record<string, string>;
+    const aftereventObj = t('service.afterevent_list', { returnObjects: true }) as Record<string, string>;
+    const specialObj = t('service.special_list', { returnObjects: true }) as Record<string, string>;
+    const disinfectionObj = t('service.disinfection_list', { returnObjects: true }) as Record<string, string>;
+    const ecoObj = t('service.eco_list', { returnObjects: true }) as Record<string, string>;
+    const individualObj = t('service.individual_list', { returnObjects: true }) as Record<string, string>;
+
+    const regular = Object.entries(regularObj || {});
+    const general = Object.entries(generalObj || {});
+    const afterrepair = Object.entries(afterrepairObj || {});
+    const afterevent = Object.entries(aftereventObj || {});
+    const special = Object.entries(specialObj || {});
+    const disinfection = Object.entries(disinfectionObj || {});
+    const eco = Object.entries(ecoObj || {});
+    const individual = Object.entries(individualObj || {});
+
     return (
         <div className="service">
             <div className="container">
-                <h5 className="service-title">Ние предлагаме</h5>
+                <h5 className="service-title">{t('service.title')}</h5>
                 <div className="service-list">
                     <ul className="service-list-item">
-                        <h5 className="service-list-item-title">
-                            Редовно почистване
-                        </h5>
-                        <li>
-                            Ежедневно, седмично или месечно почистване на
-                            жилищни и търговски помещения.
-                        </li>
-                        <li>
-                            Поддържане на чистотата на офиси, магазини, хотели и
-                            други търговски обекти.
-                        </li>
+                        <h5 className="service-list-item-title">{t('service.regular_title')}</h5>
+                        {regular?.map(([key, item]) => <li key={key}>{item}</li>)}
                     </ul>
-
                     <ul className="service-list-item">
-                        <h5 className="service-list-item-title">
-                            общо почистване
-                        </h5>
-                        <li>
-                            Дълбоко почистване на всички повърхности,
-                            включително на труднодостъпни места.
-                        </li>
-                        <li>
-                            Почистване на прозорци, почистване на килими и
-                            мебели, почистване на тавани и стени от прах.
-                        </li>
+                        <h5 className="service-list-item-title">{t('service.general_title')}</h5>
+                        {general?.map(([key, item]) => <li key={key}>{item}</li>)}
                     </ul>
-
                     <ul className="service-list-item">
-                        <h5 className="service-list-item-title">
-                            почистване след ремонт
-                        </h5>
-                        <li>Отстраняване на строителния прах и отломки.</li>
-                        <li>
-                            Почистване на всички повърхности от следи от боя,
-                            лепило и други строителни материали.
-                        </li>
+                        <h5 className="service-list-item-title">{t('service.afterrepair_title')}</h5>
+                        {afterrepair?.map(([key, item]) => <li key={key}>{item}</li>)}
                     </ul>
-
                     <ul className="service-list-item">
-                        <h5 className="service-list-item-title">
-                            почистване след събитие
-                        </h5>
-                        <li>
-                            Почистване след корпоративни събития, партита,
-                            търговски изложения и други публични събития.
-                        </li>
+                        <h5 className="service-list-item-title">{t('service.afterevent_title')}</h5>
+                        {afterevent?.map(([key, item]) => <li key={key}>{item}</li>)}
                     </ul>
-
                     <ul className="service-list-item">
-                        <h5 className="service-list-item-title">
-                            Специализирани услуги
-                        </h5>
+                        <h5 className="service-list-item-title">{t('service.special_title')}</h5>
                         <ul>
-                            <li>
-                                Химическо чистене на килими, мебели и завеси.
-                            </li>
-                            <li>
-                                Полиране и грижа за подове (паркет, мрамор,
-                                плочки и др.).
-                            </li>
-                            <li>Почистване и дезинфекция на бани и кухни.</li>
-                            <li>Премахване на мухъл и гъбички.</li>
+                            {special?.map(([key, item]) => <li key={key}>{item}</li>)}
                         </ul>
                     </ul>
-
                     <ul className="service-list-item">
-                        <h5 className="service-list-item-title">Дезинфекция</h5>
-                        <li>
-                            Цялостна дезинфекция на помещенията за отстраняване
-                            на бактерии и вируси.
-                        </li>
-                        <li>
-                            Антибактериално третиране на помещения за медицинско
-                            обслужване и хранене.
-                        </li>
+                        <h5 className="service-list-item-title">{t('service.disinfection_title')}</h5>
+                        {disinfection?.map(([key, item]) => <li key={key}>{item}</li>)}
                     </ul>
-
                     <ul className="service-list-item">
-                        <h5 className="service-list-item-title">
-                            Екопочистване
-                        </h5>
-                        <li>
-                            Използване на екологично чисти почистващи продукти.
-                        </li>
-                        <li>
-                            Услуги за клиенти, които се грижат за околната
-                            среда.
-                        </li>
+                        <h5 className="service-list-item-title">{t('service.eco_title')}</h5>
+                        {eco?.map(([key, item]) => <li key={key}>{item}</li>)}
                     </ul>
-
                     <ul className="service-list-item">
-                        <h5 className="service-list-item-title">
-                            Индивидуални решения
-                        </h5>
-                        <li>
-                            Разработване на индивидуални планове за почистване в
-                            зависимост от спецификата и нуждите на клиента.
-                        </li>
-                        <li>
-                            Консултации относно организацията на почистването.
-                        </li>
+                        <h5 className="service-list-item-title">{t('service.individual_title')}</h5>
+                        {individual?.map(([key, item]) => <li key={key}>{item}</li>)}
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,218 @@
+{
+    "about": {
+        "title": "Cleaning",
+        "desc": "Cleaning is the process of professional cleaning and maintaining cleanliness in various premises, such as residential homes, offices, commercial buildings, hotels, medical institutions, and more.",
+        "goals": "The main goals of cleaning include:",
+        "why_us": "Why us?",
+        "why_us_text": "When clients choose us <br /> for their cleaning needs, they get:",
+        "professionalism": "Professionalism and experience",
+        "professionalism_text": "Our staff has many years of experience and regularly undergoes training to provide the highest level of service.",
+        "quality": "Quality and reliability",
+        "quality_text": "We use only tested and high-quality products and equipment to ensure cleanliness and safety.",
+        "individual": "Individual approach",
+        "individual_text": "We tailor our services to the specific needs and requirements of each client.",
+        "flexibility": "Flexibility and convenience",
+        "flexibility_text": "We offer a variety of packages and schedules to best meet the needs of our clients.",
+        "eco": "Eco-friendly",
+        "eco_text": "We care about nature and use environmentally friendly cleaning products.",
+        "trust": "Our clients can be sure of cleanliness and order by entrusting their property to us.",
+        "trusted_by": "Trusted by",
+        "trusted_by_text": "We work with famous bloggers and companies such as:"
+    },
+    "contacts": {
+        "title": "We are online 24/7",
+        "phone": "+359 896 832 216",
+        "phone2": "+359 896 608 802",
+        "button": "contact us",
+        "madeby": "Made by",
+        "studio": "RV Studiocode"
+    },
+    "main": {
+        "title": "Cleanliness <br /> starts with us",
+        "desc": "Cleaning of apartments, houses and offices",
+        "order": "Order cleaning"
+    },
+    "price": {
+        "title": "Cleaning prices",
+        "foot1": "Surcharge on the base price: from 15% to 100% on holidays, adverse conditions, night work, stairs, heavy dirt or express order.",
+        "foot2": "All prices may increase after inspection of the site, depending on the degree of contamination and access for cleaning.",
+        "foot3": "Minimum order: Sofia 150.00 €, Plovdiv 100.00 €, Burgas 200.00 €.",
+        "foot4": "*there is a travel fee",
+        "foot5": "If you do not see the cleaning prices you are interested in, contact us.",
+        "contact": "Сontact us",
+        "kitchen_title": "Kitchen cleaning (€./pcs.)",
+        "kitchen_fridge": "Fridge",
+        "kitchen_oven": "Oven and hobs",
+        "kitchen_hood": "Extractor hood",
+        "kitchen_microwave": "Microwave",
+        "kitchen_full": "Full kitchen cleaning (inside and outside cleaning of cabinets, oven, stove, and extractor hood)",
+        "bath_title": "Sanitary facilities (€./pcs.)",
+        "bath_small": "Bathroom cleaning under 5 sq.m.",
+        "bath_large": "Bathroom cleaning over 5 sq.m.",
+        "bath_wc": "Cleaning of separate toilet",
+        "repair_title": "Post-renovation cleaning (€./sq.m.)",
+        "repair_paint": "Removal of paint, silicone, splashes and traces of paint, glue, foam and silicone, grout residue on tiles and faience.",
+        "repair_dust": "Dust removal from walls, washing windows, sills, ceilings, cabinets, switches, frames, polishing all surfaces, etc.",
+        "repair_full": "Full cleaning of floor coverings. Washing of windows and frames. Complete cleaning of sanitary facilities.",
+        "floor_title": "Floor coverings (€./sq.m.)",
+        "floor_vacuum": "Vacuuming hard floor coverings",
+        "floor_wet": "Manual wet cleaning of hard floor coverings",
+        "machine_title": "Machine washing (€./sq.m.)",
+        "machine_50": "Up to 50 sq.m.",
+        "machine_100": "From 51 to 100 sq.m.",
+        "machine_over": "Over 100 sq.m.",
+        "window_title": "Windows and frames (€./sq.m.)",
+        "window_low": "Professional cleaning of windows and shop windows one-sided (up to 3m height)",
+        "window_high": "Professional cleaning of windows and shop windows one-sided (over 3m height)",
+        "window_frame": "Frame cleaning (linear meter)",
+        "window_after": "Cleaning of windows and frames after major repairs, removal of stickers, paint and heavy dirt",
+        "window_net": "Mosquito net cleaning",
+        "wash_title": "Washing (€./pcs.)",
+        "wash_sofa": "Sofa seats (including backrest/cushion)",
+        "wash_chair": "Chair (seat, backrest, armrests)",
+        "wash_armchair": "Armchair",
+        "wash_taburet": "Stool",
+        "wash_mattress1": "Mattress (single, one-sided)",
+        "wash_mattress2": "Mattress (double, one-sided)",
+        "fire_title": "Professional cleaning after fire",
+        "fire_price": "negotiable",
+        "flood_title": "Professional cleaning after flood",
+        "flood_price": "negotiable"
+    },
+    "pricebeginning": {
+        "title": "What determines <br /> the price <br /> of cleaning?",
+        "desc": "The price of services depends on several factors, including:",
+        "area": "Area and number of rooms",
+        "dirt": "Degree of room contamination",
+        "chemicals": "Set of cleaning chemicals used",
+        "method": "Cleaning method",
+        "plan_title": "Pricing plan",
+        "plan_desc": "We provide comprehensive cleaning services, <br /> tailored to your needs — from one-time to regular.",
+        "package3": "Standard cleaning (windows not included)",
+        "package4": "Standard cleaning (with windows)",
+        "package5": "Deep cleaning (all inclusive)",
+        "from_275": "from €3.00/m²",
+        "from_325": "from €3.95/m²",
+        "from_375": "from €4.55/m²",
+        "package3_list": {
+            "1": "Dry and wet cleaning of all floor coverings",
+            "2": "General cleaning of sanitary facilities",
+            "3": "Kitchen cleaning. Cabinets (outside); fridge, oven, microwave, etc. outside.",
+            "4": "Dusting all open surfaces",
+            "5": "Doors and frames, lighting fixtures, switches and sockets",
+            "6": "Removal of cobwebs, etc."
+        },
+        "order_now": "Order now",
+        "best": "Best value",
+        "deep_cleaning_up_to_60": "5 €/m² for cleaning up to 60 sq.m.",
+        "deep_cleaning_over_70": "4.50 €/m² for cleaning over 70 sq.m.",
+        "package4_list": {
+            "1": "Window cleaning — glass and frames",
+            "2": "Dry and wet cleaning of all floor coverings",
+            "3": "General cleaning of sanitary facilities",
+            "4": "Kitchen cleaning. Cabinets (outside); fridge, oven, microwave, etc. outside.",
+            "5": "Dusting all open surfaces",
+            "6": "Doors and frames, lighting fixtures, switches and sockets",
+            "7": "Removal of cobwebs, etc."
+        },
+        "after_repair": "Subscription cleaning",
+        "from_4": "from 1.50 €/sq.m.",
+        "package5_list": {
+            "1": "Window cleaning — glass and frames, balconies",
+            "2": "Dry and wet cleaning of all floor coverings",
+            "3": "General cleaning of sanitary facilities",
+            "4": "Kitchen cleaning. Cabinets (inside and outside); fridge, oven, microwave, air conditioner, etc. outside.",
+            "5": "Dusting all open surfaces",
+            "6": "Doors and frames, lighting fixtures, switches and sockets",
+            "7": "Removal of cobwebs, etc."
+        }
+    },
+    "service": {
+        "title": "We offer",
+        "regular_title": "Regular cleaning",
+        "regular_list": {
+            "1": "Daily, weekly or monthly cleaning of residential and commercial premises.",
+            "2": "Maintaining the cleanliness of offices, shops, hotels and other commercial sites."
+        },
+        "general_title": "General cleaning",
+        "general_list": {
+            "1": "Deep cleaning of all surfaces, including hard-to-reach places.",
+            "2": "Window cleaning, carpet and furniture cleaning, dusting ceilings and walls."
+        },
+        "afterrepair_title": "Post-renovation cleaning",
+        "afterrepair_list": {
+            "1": "Removal of construction dust and debris.",
+            "2": "Cleaning all surfaces from paint, glue and other construction materials."
+        },
+        "afterevent_title": "After-event cleaning",
+        "afterevent_list": {
+            "1": "Cleaning after corporate events, parties, trade shows and other public events."
+        },
+        "special_title": "Specialized services",
+        "special_list": {
+            "1": "Dry cleaning of carpets, furniture and curtains.",
+            "2": "Polishing and care of floors (parquet, marble, tiles, etc.).",
+            "3": "Cleaning and disinfection of bathrooms and kitchens.",
+            "4": "Mold and mildew removal."
+        },
+        "disinfection_title": "Disinfection",
+        "disinfection_list": {
+            "1": "Comprehensive disinfection of premises to remove bacteria and viruses.",
+            "2": "Antibacterial treatment of premises for medical and food service."
+        },
+        "eco_title": "Eco-cleaning",
+        "eco_list": {
+            "1": "Use of environmentally friendly cleaning products.",
+            "2": "Services for clients who care about the environment."
+        },
+        "individual_title": "Individual solutions",
+        "individual_list": {
+            "1": "Development of individual cleaning plans depending on the specifics and needs of the client.",
+            "2": "Consultations on cleaning organization."
+        }
+    },
+    "comments": {
+        "average": "Average rating of our cleanings:",
+        "title": "Reviews of <br /> our services",
+        "more": "more reviews",
+        "form_title": "Please write your review",
+        "form_text": "Your feedback helps us improve our services.",
+        "name_placeholder": "Your name",
+        "phone_placeholder": "Phone number",
+        "comment_placeholder": "Write your review here",
+        "your_rating": "Your rating:",
+        "submit": "Leave a review",
+        "thanks_title": "Thank you for your review!",
+        "thanks_text": "Your review has been successfully submitted and will be reviewed by our team.",
+        "name_required": "Enter your name",
+        "phone_required": "Enter your phone",
+        "phone_invalid": "Invalid number"
+    },
+    "modalheader": {
+        "about": "About",
+        "service": "Services",
+        "price": "Prices",
+        "reviews": "Reviews",
+        "contacts": "Contacts",
+        "phone": "+359 896 832 216"
+    },
+    "modalorder": {
+        "success_title": "All is well, <br /> your request has been submitted!",
+        "success_soon": "everything will shine soon!",
+        "title": "Leave a request",
+        "city_placeholder": "Enter your city",
+        "name_placeholder": "Your name",
+        "phone_placeholder": "Phone number",
+        "comment_placeholder": "Comment",
+        "personal_data": "By clicking the 'Order cleaning' button, you agree to the processing of personal data.",
+        "submit": "Order cleaning",
+        "city_required": "City is required",
+        "name_required": "Name is required",
+        "phone_required": "Phone is required",
+        "phone_invalid": "Phone must be in the format 359XXXXXXXX"
+    },
+    "theme": {
+        "dark": "Dark",
+        "light": "Light"
+    }
+}
