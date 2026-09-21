@@ -18,13 +18,22 @@ export class NotificationService {
   ) {
 
     const token = this.confService.get('TOKEN');
-    
-    this.bot = new TelegramBot(token, { polling: true });
 
-    this.bot.on('message', async (msg) => {
-      const chatId = msg.chat.id;
-      await this.registerUser(chatId.toString());
-    });
+    // Если TOKEN не задан или неверный — не валим приложение при старте
+    if (token) {
+      try {
+        this.bot = new TelegramBot(token, { polling: true });
+
+        this.bot.on('message', async (msg) => {
+          const chatId = msg.chat.id;
+          await this.registerUser(chatId.toString());
+        });
+      } catch (error) {
+        console.error('Telegram bot init failed:', error);
+      }
+    } else {
+      console.error('TOKEN not set in .env, Telegram bot disabled');
+    }
   }
 
   async registerUser(chatId: string): Promise<NotificationDocument> {
@@ -39,19 +48,25 @@ export class NotificationService {
   }
 
   async sendMessage(chatId: string, message: string): Promise<void> {
+    if (!this.bot) return;
     await this.bot.sendMessage(chatId, message);
   }
 
   async sendMessageToAll(dto: NotificationDto): Promise<void> {
     const message = `Город - ${dto.city}\nИмя - ${dto.name}\nМобильный телефон - ${dto.phone}\nКомментарий - ${dto.comment || "нету"}`;
     const users = await this.notificationModel.find().lean().exec() as Notification[];
-    await this.mailService.sendMail(
-      {
-        to:"helpcleanprobg@gmail.com",
-        subject: "Ордер на клининг",
-        text:message,
+    // Ошибка почты не должна ломать заказ и Telegram-рассылку
+    try {
+      await this.mailService.sendMail(
+        {
+          to: process.env.GMAIL_ADDRESS || "helpcleanprobg@gmail.com",
+          subject: "Ордер на клининг",
+          text: message,
+        }
+      );
+    } catch (error) {
+      console.error("Email send failed, continuing with Telegram:", error);
     }
-    )
     for (const user of users) {
       if (user.chatId) {
         try {

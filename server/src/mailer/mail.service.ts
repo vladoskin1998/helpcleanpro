@@ -20,12 +20,13 @@ export class MailService {
             process.env.GOOGLE_CLIENT_SECRET_MAIL,
             process.env.GOOGLE_REFRESH_REDIRECT_MAIL_URL
         );
+
         this.oauth2Client.setCredentials({
             refresh_token: process.env.GOOGLE_REFRESH_TOKEN_MAIL,
-    
+            // refresh-токен должен быть выдан со скоупом https://mail.google.com/
+            // или https://www.googleapis.com/auth/gmail.send
+            scope: 'https://mail.google.com/',
         });
-
-        // this.oauth2Client.refresh_token(process.env.GOOGLE_REFRESH_TOKEN_MAIL)
 
         this.transporter = nodemailer.createTransport({
             service: 'Gmail',
@@ -35,7 +36,10 @@ export class MailService {
                 clientId: process.env.GOOGLE_CLIENT_ID_MAIL,
                 clientSecret: process.env.GOOGLE_CLIENT_SECRET_MAIL,
                 refreshToken: process.env.GOOGLE_REFRESH_TOKEN_MAIL,
-                accessToken: this.oauth2Client.getAccessToken(),
+                // ВАЖНО: не вызываем getAccessToken() здесь — он возвращает Promise
+                // и при старте делает сетевой запрос к Google. Если credentials
+                // неверные — это необработанное исключение и приложение падает.
+                // Токен nodemailer сам обновит в момент отправки письма.
             },
         });
     }
@@ -44,32 +48,28 @@ export class MailService {
         to,
         subject,
         text,
+        html,
     }: {
         to: string;
         subject: string;
         text: string;
-      } ) {
-        console.log("sendMail");
-        
-        const mailOptions = {
-            from: 'helpcleanprobg@gmail.com',
-            to,
-            subject,
-            text,
-        };
-
-        return new Promise((resolve, reject) => {
-            this.transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    console.log(error);
-                    
-                    reject(error);
-                } else {
-                    console.log(info);
-                    
-                    resolve(info.response);
-                }
+        html?: string;
+    }) {
+        try {
+            const info = await this.transporter.sendMail({
+                // from должен совпадать с авторизованным аккаунтом (GMAIL_ADDRESS)
+                from: process.env.GMAIL_ADDRESS,
+                to,
+                subject,
+                text,
+                html,
             });
-        });
+            console.log('Email sent:', info.response);
+            return info.response;
+        } catch (error) {
+            // Ошибка почты не должна ронять приложение или заказ
+            console.error('Email send error:', error);
+            return null;
+        }
     }
 }

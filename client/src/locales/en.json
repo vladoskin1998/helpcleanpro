@@ -104,8 +104,9 @@
         },
         "order_now": "Order now",
         "best": "Best value",
-        "deep_cleaning_up_to_60": "5 €/m² for cleaning up to 60 sq.m.",
-        "deep_cleaning_over_70": "4.50 €/m² for cleaning over 70 sq.m.",
+        "from_4": "from 0.95 €/sq.m.",
+        "deep_cleaning_up_to_60": "1.50 €/m² for cleaning up to 60 sq.m.",
+        "deep_cleaning_over_70": "1.20 €/m² for cleaning over 70 sq.m.",
         "package4_list": {
             "1": "Window cleaning — glass and frames",
             "2": "Dry and wet cleaning of all floor coverings",
@@ -116,12 +117,12 @@
             "7": "Removal of cobwebs, etc."
         },
         "after_repair": "Subscription cleaning",
-        "from_4": "from 1.50 €/sq.m.",
+   
         "package5_list": {
             "1": "Window cleaning — glass and frames, balconies",
             "2": "Dry and wet cleaning of all floor coverings",
             "3": "General cleaning of sanitary facilities",
-            "4": "Kitchen cleaning. Cabinets (inside and outside); fridge, oven, microwave, air conditioner, etc. outside.",
+            "4": "Kitchen cleaning. Internal cleaning of cabinets, fridge, oven, microwave, air conditioner, etc.",
             "5": "Dusting all open surfaces",
             "6": "Doors and frames, lighting fixtures, switches and sockets",
             "7": "Removal of cobwebs, etc."
