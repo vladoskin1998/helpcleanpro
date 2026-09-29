@@ -5,6 +5,7 @@ import { useEffect } from "react"
 import { Link} from 'react-router'
 import { LanguageSelect } from "./Language-select"
 import { useTranslation } from 'react-i18next';
+import { SwitchTheme } from "./Switch-theme"
 export const ModalHeader = ({
     open,
     close,
@@ -32,6 +33,7 @@ export const ModalHeader = ({
                 <div className="modal-head-mob  modal-head-header">
                     <img src={"/Images/aboutlogo.svg"} alt="help clean pro" />
                     <div className="burger-select-language"><LanguageSelect /></div>
+                           <SwitchTheme />
                 </div>
                 <ul className="modal-head-body">
                     <li>
