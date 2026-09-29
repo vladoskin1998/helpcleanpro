@@ -31,18 +31,18 @@ const Header = () => {
         setIsOpen(false)
     }
     return (
-        <div className={`header ${showHeader ? "header-show": "header-hide"}`}>
+        <div className={`header ${showHeader ? "header-show" : "header-hide"}`}>
             <div className="header-content">
                 <button className="header-img">
-                <ScrollLink
-                    to="main"
-                    smooth={true}
-                    duration={700}
-                 
-                >
-                        <Logo/>
-                </ScrollLink>
-               
+                    <ScrollLink
+                        to="main"
+                        smooth={true}
+                        duration={700}
+
+                    >
+                        <Logo />
+                    </ScrollLink>
+
                 </button>
                 <div className="header-nav">
                     <div className="header-phone">
@@ -51,10 +51,10 @@ const Header = () => {
                         </span>
                         <span>|</span>
                         <span>
-                            <LanguageSelect/>
+                            <LanguageSelect />
                         </span>
                         | <span>
-                            <SwitchTheme/>
+                            <SwitchTheme />
                         </span>
                     </div>
                     <button

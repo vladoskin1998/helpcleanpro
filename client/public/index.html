@@ -103,7 +103,18 @@
             />
         </noscript>
     </head>
-    <body>
+    <body data-theme="dark">
+        <script>
+            // Тема по умолчанию — тёмная (если пользователь не выбрал иное)
+            ;(function () {
+                try {
+                    var theme = localStorage.getItem("theme")
+                    if (theme !== "light") {
+                        document.body.setAttribute("data-theme", "dark")
+                    }
+                } catch (e) {}
+            })()
+        </script>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
         <!--

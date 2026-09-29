@@ -7,7 +7,8 @@ export const SwitchTheme = () => {
   const [dark, setDark] = useState(() => {
     const theme = localStorage.getItem('theme');
     if (theme) return theme === 'dark';
-    return document.body.getAttribute('data-theme') === 'dark';
+    // По умолчанию — тёмная тема
+    return true;
   });
 
   useEffect(() => {

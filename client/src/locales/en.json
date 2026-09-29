@@ -3,6 +3,17 @@
         "title": "Cleaning",
         "desc": "Cleaning is the process of professional cleaning and maintaining cleanliness in various premises, such as residential homes, offices, commercial buildings, hotels, medical institutions, and more.",
         "goals": "The main goals of cleaning include:",
+        "goals_list": {
+            "1": "Maintaining cleanliness",
+            "2": "Ensuring hygiene",
+            "3": "Creating a comfortable environment",
+            "4": "Extending the life of the property",
+            "5": "Improving air quality",
+            "6": "Aesthetic appearance",
+            "7": "Saving time and effort",
+            "8": "Compliance with sanitary and hygienic requirements",
+            "9": "Increasing safety"
+        },
         "why_us": "Why us?",
         "why_us_text": "When clients choose us <br /> for their cleaning needs, they get:",
         "professionalism": "Professionalism and experience",

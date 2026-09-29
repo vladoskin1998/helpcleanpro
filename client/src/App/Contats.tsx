@@ -28,10 +28,10 @@ const Contats = () => {
             <p className="contacts-title">{t('contacts.title')}</p>
             <div className="contacts-phone">{t('contacts.phone')} <div>{t('contacts.phone2')}</div> </div>
             <div className="contacts-net">
-                <a href="https://www.instagram.com/helpcleanpro/profilecard/?igsh=MXJlMzh6eW14MjN6aA==" target="_blank">
+                <a href="https://www.instagram.com/helpcleanpro?stkn=MXJlMzh6eW14MjN6aA%3D%3D&utm_source=qr" target="_blank">
                     <IconsIns />
                 </a>
-                <a href="https://www.tiktok.com/@helpcleanpro2?_t=8rJLyUZuic2&_r=1" target="_blank">
+                <a href="https://www.tiktok.com/@helpcleanpro?_r=1&_t=ZN-9A6soHcLGNi" target="_blank">
                     <IconsTiktok />
                 </a>
                 <a href="https://www.facebook.com/profile.php?id=61550650637904" target="_blank">
@@ -40,10 +40,10 @@ const Contats = () => {
                 <a href="https://t.me/myronov_clean" target="_blank">
                     <IconsTelegram />
                 </a>
-                <a href="https://wa.me/359896832216" target="_blank">
+                <a href="https://wa.me/359896832216" target="_blank" rel="noopener noreferrer">
                     <IconsWa />
                 </a>
-                <a href="viber://chat?number=+359896832216" target="_blank">
+                <a href="viber://chat?number=%2B359896832216" target="_blank" rel="noopener noreferrer">
                     <IconsViber />
                 </a>
             </div>

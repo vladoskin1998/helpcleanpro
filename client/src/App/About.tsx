@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 const About = () => {
     const { t } = useTranslation();
+    const goalsObj = t('about.goals_list', { returnObjects: true }) as Record<string, string>;
+    const goals = Object.entries(goalsObj || {});
 
     return (
         <>
@@ -14,6 +16,16 @@ const About = () => {
                             <h5>{t('about.title')}</h5>
                             <p>{t('about.desc')}</p>
                             <p>{t('about.goals')}</p>
+                            <ul className="about-goals-list">
+                                {goals.map(([key, item], index) => (
+                                    <li className="about-goals-item" key={key}>
+                                        <span className="about-goals-num">
+                                            {String(index + 1).padStart(2, '0')}
+                                        </span>
+                                        <span className="about-goals-text">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                         <div className="girls-hcpro-img">
                             <img src= "/Images/girls-hcpro.jpg" alt="help clean pro" />
